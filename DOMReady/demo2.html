@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			var setTimeoutReady = function(){
+   						document.getElementById("divMsg").innerHTML += "<br/> setTimeout , readyState:" + document.readyState;
+    		};
+		    var setTimeoutBindReady = function(){
+		        /in/.test(document.readyState)?setTimeout(arguments.callee, 1):setTimeoutReady();
+		        //document.readyState: loading
+		        //					   complete
+		    };
+    		setTimeoutBindReady();
+		</script>
+	</head>
+	<body>
+		<div id="divMsg"></div>
+	</body>
+</html>

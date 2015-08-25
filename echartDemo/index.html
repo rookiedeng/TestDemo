@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../lib/echarts-2.2.7/build/dist/echarts.js"></script>
+	</head>
+	<body>
+    	 <div id="main" style="height:400px;"></div>
+   		 <script src="../lib/echarts-2.2.7/build/dist/echarts.js"></script>
+   		 <script type="text/javascript">
+		        require.config({
+		            paths: {
+		                echarts: '../lib/echarts-2.2.7/build/dist'
+		            }
+		        });
+		          require(
+			            [
+			                'echarts',
+			                'echarts/chart/line',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+			                'echarts/chart/bar'
+			            ],
+			            function (ec,line,bar) {
+               				 var myChart = ec.init(document.getElementById('main'));
+               			 	 var option = {
+               				 
+               			 	 }
+               			 debugger
+                myChart.setOption(option);
+            }
+        );
+    	</script>
+	</body>
+</html>

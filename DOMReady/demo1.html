@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+		  //doScroll
+		 /*   var doScrollMoniterId = null;
+		    var doScrollMoniter = function(){
+		        try{
+		            document.documentElement.doScroll("left");
+		            document.getElementById("divMsg").innerHTML += "<br/>doScroll, readyState:" + document.readyState;
+		            if(doScrollMoniterId){
+		                clearInterval(doScrollMoniterId);
+		            }
+		        }
+		        catch(ex){
+		        }
+		    }
+		    doScrollMoniterId = setInterval(doScrollMoniter, 1);*/
+		    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+   			var script = document.getElementById("__ie_onload");
+  			document.onreadystatechange = function() {
+  				console.info(this === document);//true
+	       		if (this.readyState == "complete") {                
+	          		document.getElementById("divMsg").innerHTML += "<br/>internal script defer, readyState:" + document.readyState;
+	      		}
+	       		//this === document
+   			};
+   			/*
+   			1、 dom加载完毕，并且资源也加载完毕
+   			 
+   			2、 this.readyState值的出现顺序：
+   			 interactive：交互式的  dom树构建完毕执行，但这个不稳定，因为这个时候可能修改和添加dom
+   			 complete
+   			 * */
+		</script>
+	</head>
+	<body >
+		<div>即将出现</div>
+		<div id="divMsg">
+			
+		</div>
+		<script type="text/javascript" src="otherResourse.js"></script>
+	</body>
+</html>

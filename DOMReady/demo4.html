@@ -1,0 +1,20 @@
+<!--
+IE的 script 元素支持onreadystatechange事件，不支持onload事件。
+W3C的script 元素不支持onreadystatechange事件，只支持onload事件。
+如果要在一个<script src="xx.js"> 加载完成执行一个操作，FF使用onload事件就行了，
+IE下则要结合onreadystatechange事件和this.readyState，以下是IE的一个例子：
+<script type="text/javascript" src="xx.js" onreadstatechange="if(this.readyState=='load') alert('loaded');"></script>
+this.readyState的值为'loaded'或者'complete'都可以表示这个script已经加载完成．
+如何结合IE和FF的区别?参考一下jquery的源码：-->
+<!--<script type="text/javascript" src="otherResourse.js" onreadstatechange="if(this.readyState=='load') alert('loaded');"></script>-->
+<!--<script type="text/javascript" src="otherResourse.js" onload="alert('loaded');"></script>-->
+<script type="text/javascript">
+	window.onload = function(){
+	      var script = document.createElement("script");
+	      script.setAttribute("type","text/javascript");
+	      script.onload = function(){
+	         alert("TEST")
+	     }
+    	script.src="otherResourse.js";
+	}
+</script>

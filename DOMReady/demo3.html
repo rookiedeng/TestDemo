@@ -1,0 +1,143 @@
+
+<!--
+	最早的时候使用window.onload = function(){...}，使得代码在页面完全加载完成后执行，
+	这种方法对于页面资源很小的情况下是没问题的。弊端在于有时候页面中回加载一些比较费时的img、flash等资源，
+	这种情况下浏览器会一直等待这些资源加载完成后再执行js代码。而浏览器中有DOM树跟Render树的区分，
+	我们当然希望DOM树生成后便可以执行js代码，而不需要一定等待Render树完成后采取执行。
+
+	HTML5中加入了DOMContentLoaded事件，该事件在DOM树加载完成后便会触发（实际上大多数浏览器通常在样式资源加载完成后才会触发该事件，
+	这个时候DOM可能早就加载完成了）。
+
+　　对于不支持DOMContentLoaded事件的浏览器，我们通过监听document的onreadystatechange事件来判断DOM加载情况。
+	从理论上来说，document有一属性名唤readyState，在页面加载过程中该属性的值会经过三次变化：loading（加载阶段）、interactive（DOM解析完成）、complete（完全加载完成，相当于onload）。
+	但是浏览器的有时候并不会依次经过这三次变化。
+
+　　在IE中有某些DOM方法，必须在DOM加载完成后方可调用（注意是调用，不是访问），一般情况下通过轮询调用doScroll方法来检测，当调用成功时表明DOM已加载完成。
+	但需要注意的是，当页面中有iframe元素时，会等到iframe完全渲染结束后，调用才可成功，这时候于调用onload方法没什么区别。
+	还有一点，在IE中，document.body必须在DOM解析完成后才可以访问body元素，而FF中即使DOM没有加载完成也可访问，这一点经常在IE中被用作判断DOM加载完成时的一个依据。
+　　下面是参考资料后，自己写的一个domready方法：
+-->
+<!DOCTYPE html>
+  <html>  
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>MyDomReady</title>
+    
+    <script type="text/javascript">
+        window.myDOMReady = function(callback){
+            myDOMReady.isReady = false;
+            
+            var isBindReady = false;
+            if (typeof callback === "function"){
+                myDOMReady.readyCallback = callback;
+            }else{
+                myDOMReady.readyCallback = function(){};
+            }
+            
+            bindReady();
+            
+            function onReady(){
+                console.log("onReady Function");
+                if (!myDOMReady.isReady){
+                    if (!document.body){
+                        setTimeout(onReady, 4);
+                        return;
+                    }
+                    myDOMReady.isReady = true;
+                    console.log('ready');
+                    myDOMReady.readyCallback();
+                }
+            };
+            
+            function domReady(){
+                if (document.addEventListener){
+                    console.log('DOMContentLoaded');
+                }else if (document.attachEvent){
+                    console.log("onreadystatechange   ", document.readyState);
+                }
+                onReady();
+            }
+            
+            function bindReady(){
+                if (isBindReady){
+                    return;
+                }
+                isBindReady = true;
+                
+                if (document.addEventListener){//w3c浏览器
+                    document.addEventListener('DOMContentLoaded', domReady, false);
+                }else if (document.attachEvent){//ie浏览器
+                    document.attachEvent('onreadystatechange', domReady);
+                    
+                    var hasDoScroll = !!document.documentElement.doScroll,
+                    noFrame = window.frameElement === null;
+                    if (hasDoScroll && noFrame){
+                        checkDoScroll();
+                    }
+                }
+                window.onload = function(){
+                    console.log('onloaded');
+                    onReady();
+                };
+            };
+            
+            function checkDoScroll(){
+                if (myDOMReady.isReady){
+                    return;
+                }
+                try{
+                    document.documentElement.doScroll('left');
+                }catch(err){
+                    setTimeout(checkDoScroll, 4);
+                    return;
+                }
+                console.log('checked');
+                onReady();
+            };
+        };
+    </script>
+    <script type="text/javascript">
+        myDOMReady(function(){
+            var map = document.getElementById('map');
+            if (map){
+                alert('Yes');
+            }else{
+                alert('No!');
+            }
+        });
+        var map2 = document.getElementById('map');
+            if (map2){
+                alert('Yes map2');
+            }else{
+                alert('No! map2');
+            }
+    </script>
+  </head> 
+
+  <body class="claro"> 
+  <input id="ipt" type="file" accept="image/png" >
+    <div data-dojo-type="dijit/layout/BorderContainer" 
+         data-dojo-props="design:'headline', gutters:false" 
+         style="width:100%;height:100%;margin:0;">
+        
+      <div id="map" 
+           data-dojo-type="dijit/layout/ContentPane" 
+           data-dojo-props="region:'center'" 
+           style="padding:0;">
+
+        <div style="position:absolute; right:20px; top:10px; z-Index:999;">
+          <div data-dojo-type="dijit/TitlePane" 
+               data-dojo-props="title:'Switch Basemap', closable:false,  open:false">
+            <div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
+            <div id="basemapGallery" ></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body> 
+
+  </html>
