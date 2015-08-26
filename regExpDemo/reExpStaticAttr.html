@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegExp对象的静态属性 </title>
+		<script type="text/javascript">
+			//input 最后用于匹配的字符串（传递给test,exec方法的字符串） 
+			var re = /[A-Z]/; 
+			var str = "Hello,World!!!"; 
+			var arr = re.exec(str); 
+			alert(RegExp.input);//Hello,World!!! 
+			re.exec("tempstr"); 
+			alert(RegExp.input);//仍然是Hello,World!!!,因为tempstr不匹配 
+			//lastMatch 最后匹配的字符 
+			re = /[a-z]/g; 
+			str = "hi"; 
+			re.test(str); 
+			alert(RegExp.lastMatch);//h 
+			re.test(str); 
+			alert(RegExp["$&"]);//i ,$&是lastMatch的短名字，但由于它不是合法变量名，所以要。。 
+			//lastParen 最后匹配的分组 
+			re = /[a-z](\d+)/gi; 
+			str = "Class1 Class2 Class3"; 
+			re.test(str); 
+			alert(RegExp.lastParen);//1 
+			re.test(str); 
+			alert(RegExp["$+"]);//2 
+			//leftContext 返回被查找的字符串中从字符串开始位置到最后匹配之前的位置之间的字符 
+			//rigthContext 返回被搜索的字符串中从最后一个匹配位置开始到字符串结尾之间的字符 
+			re = /[A-Z]/g; 
+			str = "123ABC456"; 
+			re.test(str); 
+			alert(RegExp.leftContext);//123 
+			alert(RegExp.rightContext);//BC456 
+			re.test(str); 
+			alert(RegExp["$`"]);//123A 
+			alert(RegExp["$'"]);//C456 
+			
+			
+			/*
+			 multiline属性返回正则表达式是否使用多行模式,
+			 这个属性不针对某个正则表达式实例，而是针对所有正则表达式，
+			 并且这个属性可写.(IE与Opera不支持这个属性) */
+			
+			alert(RegExp.multiline); 
+			//因为IE，Opera不支持这个属性，所以最好还是单独指定 
+			var re = /\w+/m; 
+			alert(re.multiline); 
+			alert(RegExp["$*"]);//RegExp对象的静态属性不会因为给RegExp某个对象实例指定了m标志而改变 
+			RegExp.multiline = true;//这将打开所有正则表达式实例的多行匹配模式 
+			alert(RegExp.multiline); 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

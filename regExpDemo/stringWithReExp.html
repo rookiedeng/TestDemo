@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function log(val){
+				console.info(val)
+			}
+		
+			//replace方法,用于替换字符串 
+			var str ="some money"; 
+			log(str.replace("some","much"));//much money 
+			//replace的第一个参数可以为正则表达式 
+			var re = /\s/;//空白字符 
+			log(str.replace(re,"%"));//some%money 
+			//在不知道字符串中有多少空白字符时,正则表达式极为方便 
+			str ="some some \tsome\t\f"; 
+			re = /\s+/; 
+			log(str.replace(re,"#"));//但这样只会将第一次出现的一堆空白字符替换掉 
+			//因为一个正则表达式只能进行一次匹配,\s+匹配了第一个空格后就退出了 
+			re = /\s+/g;//g,全局标志,将使正则表达式匹配整个字符串 
+			log(str.replace(re,"@"));//some@some@some@ 
+			var str = "ADF9DF9DF9", //那个文本文件中的字符串; 
+			re = /9/gi, //匹配9 
+			counter = 0; //计数器 var newstr = 
+			str = str.replace(re, function() { 
+			counter++; //每出现一次匹配,函数就被执行一次,函数的返回值用来替换原值 
+			return "#"; 
+			}); 
+			log("替换次数: "+counter); 
+			//log(str); 
+			//最后str 变成 ADF#DF#DF#" 
+			var str = "他今年22岁，她今年20岁，他的爸爸今年45岁，她的爸爸今年44岁，一共有4人" 
+			function test($1) { 
+			var gyear = (new Date()).getYear() - parseInt($1) + 1; 
+			return $1 + "(" + gyear + "年出生)"; 
+			} 
+			// var reg = new RegExp("(http://www.cnblogs.com/sgivee/admin/file://d/+)岁", "g"); 
+			var reg = /(\d+)岁/gi; 
+			var newstr = str.replace(reg, test); 
+			//log(str); 
+			//log(newstr); 
+			//另一个与之相似的是split 
+			var str = "a-bd-c"; 
+			var arr = str.split("-");//返回["a","bd","c"] 
+			//如果str是用户输入的,他可能输入a-bd-c也可能输入a bd c或a_bd_c,但不会是abdc(这样就说他输错了) 
+			str = "a_db-c";//用户以他喜欢的方式加分隔符s 
+			re=/[^a-z]/i;//前面我们说^表示字符开始,但在[]里它表示一个负字符集 
+			//匹配任何不在指定范围内的任意字符,这里将匹配除字母处的所有字符 
+			arr = str.split(re);//仍返回["a","bd","c"]; 
+			//在字符串中查找时我们常用indexOf,与之对应用于正则查找的方法是search 
+			str = "My age is 18.Golden age!";//年龄不是一定的,我们用indexOf不能查找它的位置 
+			re = /\d+/; 
+			log(str.search(re));//返回查找到的字符串开始下标10 
+			//注意,因为查找本身就是出现第一次就立即返回,所以无需在search时使用g标志 
+			//下面的代码虽然不出错,但g标志是多余的 
+			re=/\d+/g; 
+			log(str.search(re));//仍然是10 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!--当然,仅仅知道了字符串是否匹配模式还不够,我们还需要知道哪些字符匹配了模式
+	注意,当字符串不匹配re时,exec方法将返回null 
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function log(val){
+				console.info(val)
+			}
+		
+			var osVersion = "Ubuntu 8";//其中的8表示系统主版本号 
+			var re = /^[a-z]+\s+\d+$/i; //+号表示字符至少要出现1次,\s表示空白字符,\d表示一个数字 
+			log(re.test(osVersion));//true,但我们想知道主版本号 
+			//另一个方法exec,返回一个数组,数组的第一个元素为完整的匹配内容 
+			re=/^[a-z]+\s+\d+$/i; 
+			arr = re.exec(osVersion); 
+			log(arr[0]);//将osVersion完整输出,因为整个字符串刚好匹配re 
+			//我只需要取出数字 
+			re=/\d+/; 
+			var arr = re.exec(osVersion); 
+			log(arr[0]);//8 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

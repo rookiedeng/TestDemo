@@ -1,0 +1,25 @@
+<!--
+	类似于exec方法,String对象的match方法也用于将字符串与正则表达式进行匹配并返回结果数组 
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var str = "My name is CJ.Hello everyone!"; 
+			var re = /[A-Z]/;//匹配所有大写字母 
+			var arr = str.match(re);//返回数组 
+			alert(arr);//数组中只会包含一个M,因为我们没有使用全局匹配 
+			re = /[A-Z]/g; 
+			arr = str.match(re); 
+			alert(arr);//M,C,J,H 
+			//从字符串中抽取单词 
+			re = /\b[a-z]*\b/gi;//\b表示单词边界 
+			str = "one two three four"; 
+			alert(str.match(re));//one,two,three,four 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

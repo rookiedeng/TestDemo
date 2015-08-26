@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function log(val){
+				console.info(val)
+			}
+			
+			//exec返回的数组第1到n元素中包含的是匹配中出现的任意一个子匹配 
+			//有多少个()就有多少个正则表达式
+			osVersion = 'Ubuntu 8';
+			re=/^[a-z]+\s+(\d+)$/i;//用()来创建子匹配 
+			arr =re.exec(osVersion); 
+			log(arr[0]);//整个osVersion,也就是正则表达式的完整匹配 
+			log(arr[1]);//8,第一个子匹配,事实也可以这样取出主版本号 
+			log(arr.length);//2 
+			osVersion = "Ubuntu 8.10";//取出主版本号和次版本号 
+			re = /^[a-z]+\s+(\d+)\.(\d+)$/i;//.是正则表达式元字符之一,若要用它的字面意义须转义 
+			arr = re.exec(osVersion); 
+			log(arr[0]);//完整的osVersion 
+			log(arr[1]);//8 
+			log(arr[2]);//10 
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!--RegExp对象实例的一些属性 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var re = /[a-z]/i; 
+			alert(re.source);//将[a-z]字符串输出 
+			//请注意,直接alert(re)会将正则表达式连同前向斜线与标志输出,这是re.toString方法定义的 
+			
+			/*
+			 每个RegExp对象的实例具有lastIndex属性,
+			 它是被查找字符串中下一次成功匹配的开始位置,默认值是-1。
+			 lastIndex 属性被 RegExp 对象的 exec 和 test 方法修改.并且它是可写的. */
+			
+			var re = /[A-Z]/;
+			//exec方法执行后,修改了re的lastIndex属性, 
+			var str = "Hello,World!!!"; 
+			var arr = re.exec(str); 
+			alert(re.lastIndex);//0,因为没有设置全局标志 
+			re = /[A-Z]/g; 
+			arr = re.exec(str); 
+			alert(re.lastIndex);//1 
+			arr = re.exec(str); 
+			alert(re.lastIndex);//7 
+			
+			
+			/*
+			 当匹配失败（后面没有匹配），或lastIndex值大于字符串长度时，再执行exec等方法会将lastIndex设为0(开始位置) 
+			 * */
+			var re = /[A-Z]/; 
+			var str = "Hello,World!!!"; 
+			re.lastIndex = 120; 
+			var arr = re.exec(str); 
+			alert(re.lastIndex);//0 
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
