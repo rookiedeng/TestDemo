@@ -5,8 +5,11 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script type="text/javascript">
+			function log(val){
+				console.info(val);
+			}
 			var re = /[a-z]/i; 
-			alert(re.source);//将[a-z]字符串输出 
+			log(re.source);//将[a-z]字符串输出 
 			//请注意,直接alert(re)会将正则表达式连同前向斜线与标志输出,这是re.toString方法定义的 
 			
 			/*
@@ -18,12 +21,12 @@
 			//exec方法执行后,修改了re的lastIndex属性, 
 			var str = "Hello,World!!!"; 
 			var arr = re.exec(str); 
-			alert(re.lastIndex);//0,因为没有设置全局标志 
+			log(re.lastIndex);//0,因为没有设置全局标志 
 			re = /[A-Z]/g; 
 			arr = re.exec(str); 
-			alert(re.lastIndex);//1 
+			log(re.lastIndex);//1 
 			arr = re.exec(str); 
-			alert(re.lastIndex);//7 
+			log(re.lastIndex);//7 
 			
 			
 			/*
@@ -33,7 +36,7 @@
 			var str = "Hello,World!!!"; 
 			re.lastIndex = 120; 
 			var arr = re.exec(str); 
-			alert(re.lastIndex);//0 
+			log(re.lastIndex);//0 
 			
 		</script>
 	</head>

@@ -4,21 +4,27 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script type="text/javascript">
+			function log(val){
+				console.info(val)
+			}
 			/*贪婪量词与惰性量词
 			•用贪婪量词进行匹配时，它首先会将整会字符串当成一个匹配，如果匹配的话就退出，如果不匹配，就截去最后一个字符进行匹配，如果不匹配，继续将最后一个字符截去进行匹配，直到有匹配为止。直到现在我们遇到的量词都是贪婪量词 
 			•用惰性量词进行匹配时，它首先将第一个字符当成一个匹配，如果成功则退出，如果失败，则测试前两个字符，依些增加，直到遇到合适的匹配为止 
 			惰性量词仅仅在贪婪量词后面加个"?"而已,如"a+"是贪婪匹配的,"a+?"则是惰性的 */
-
-			/*var str = "abc"; 
-			var re = /\w+/;//将匹配abc 
-			re = /\w+?/;//将匹配a */
-
+			//贪婪匹配
+			var str = "abc"; 
+			var re = /\w+/;
+			log(re.test(str));//将匹配abc 
+			//惰性
+			re = /\w+?/;
+			log(re.test(str))//将匹配a 
+			
 			//多行模式 
 			var re = /[a-z]$/; 
 			var str = "ab\ncdef"; 
-			alert(str.replace(re,"#"));//ab\ncde# 
+			log('多行模式 '+str.replace(re,"#"));//ab\ncde# 
 			re =/[a-z]$/m; 
-			alert(str.replace(re,"#"));//a#\ncde# 
+			log('多行模式 '+str.replace(re,"#"));//a#\ncde# 
 			
 			//分组与非捕获性分组 
 			re = /abc{2}/;//将匹配abcc 
@@ -26,20 +32,32 @@
 			//上面的分组都是捕获性分组 
 			str = "abcabc ###"; 
 			arr = re.exec(str); 
-			alert(arr[1]);//abc 
+			log(arr[1]);//abc 
 			
 			//非捕获性分组 (?:) 
 			re = /(?:abc){2}/; 
 			arr = re.exec(str); 
-			alert(arr[1]);//undefined 
+			log(arr[1]);//undefined 
+			
+			/*非捕获性分组：
+			创建反向引用的分组，这种分组一般称为捕获性分组。同时也存在一种非捕获性分组。它不会创建反向引用，因为在比较长的正则表达式中，分组多了会很影响效率。所以使用非捕获性分组。
+			创建非捕获性分组是这样的(?:开始然后写表达式。例如:*/
+			var str='#123456';
+			//var oReg=/#(\w+)/g; 　　//()的作用有多种，其中一咱就是捕获性分组，有些书上也称做“反向引用”，
+			var oReg=/#(?:\w+)/;　　//非捕获性分组 ，在()左边添加 ?:
+			alert(oReg.test(str));　　 //true
+			alert(RegExp.$1);　　//　　''  返回空值，由此可以它虽然满足了我们的要求但却并没有创建引用，而如果使用捕获性分组，这里就会返回一个 123456 ，因为RegExp.$1 “记忆”下了匹配的字符。
+			/*注意：在JavaScript中，分组匹配的结果是存储在RegExp中的，如果我们使用的是捕获性分组，
+			那么就都可以通过RegExp.$1,RegExp.$2...来取得相应的分组匹配结果，
+			第一个()表示RegExp.$1,第二个()表示RegExp.$2,依此类推。。。*/
 
 			//候选（也就是所说的“或”） 
 			re = /^a|bc$/;//将匹配开始位置的a或结束位置的bc 
 			str ="add"; 
-			alert(re.test(str));//true 
+			log(re.test(str));//true 
 			re = /^(a|bc)$/;//将匹配a或bc 
 			str ="bc"; 
-			alert(re.test(str));//true 
+			log(re.test(str));//true 
 
 			/*当包含分组的正则表达式进行过test,match,search这些方法之后，
 			 * 每个分组都被放在一个特殊的地方以备将来使用，
@@ -52,19 +70,19 @@
 			(C?)*/ 
 			str = "ABC"; 
 			re.test(str);//反向引用被存储在RegExp对象的静态属性$1—$9中 
-			alert(RegExp.$1+"\n"+RegExp.$2+"\n"+RegExp.$3); 
+			log(RegExp.$1+"\n"+RegExp.$2+"\n"+RegExp.$3); 
 			//反向引用也可以在正则表达式中使用\1 ,\2...这类的形式使用 
 			re = /\d+(\D)\d+\1\d+/; 
 			str = "2008-1-1"; 
-			alert(re.test(str));//true 
+			log(re.test(str));//true 
 			str = "2008-4_3"; 
-			alert(re.test(str));//false 
+			log(re.test(str));//false 
 
 			/*使用反向引用可以要求字符串中某几个位置上的字符必须相同.
 			另外，在replace这类方法中可用特殊字符序列来表示反向引用*/
 			re = /(\d)\s(\d)/; 
 			str = "1234 5678"; 
-			alert(str.replace(re,"$2 $1"));//在这个里面$1表示第一个分组1234,$2则表示5678 
+			log(str.replace(re,"$2 $1"));//在这个里面$1表示第一个分组1234,$2则表示5678 
 
 			/*其它——〉正向前瞻,用来捕获出现在特定字符之前的字符,只有当字符后面跟着某个特定字符才去捕获它。
 			与正向前瞻对应的有负向前瞻，它用匹配只有当字符后面不跟着某个特定字符时才去匹配它。
@@ -74,15 +92,15 @@
 			re = /([a-z]+(?=\d))/i; 
 			//我们要匹配后面跟一个数字的单词，然后将单词返回，而不要返回数字 
 			str = "abc every1 abc"; 
-			alert(re.test(str));//true 
-			alert(RegExp.$1);//every 
-			alert(re.lastIndex);//使用前瞻的好处是,前瞻的内容(?=\d)并不会当成一次匹配，下次匹配仍从它开始 
+			log(re.test(str));//true 
+			log(RegExp.$1);//every 
+			log(re.lastIndex);//使用前瞻的好处是,前瞻的内容(?=\d)并不会当成一次匹配，下次匹配仍从它开始 
 			//负向前瞻(?!) 
 			re = /([a-z](?!\d))/;i 
 			//将匹配后面不包含数字的字母,并且不会返回(?!\d)中的内容 
 			str = "abc1 one"; 
-			alert(re.test(str)); 
-			alert(RegExp.$1);//one 
+			log(re.test(str)); 
+			log(RegExp.$1);//one 
 
 			/*构建一个验证电子邮箱地址有效性的正则表达式。
 			电子邮箱地址有效性要求(我们姑且这样定义)：用户名只能包含字母数字以及下划线，最少一位，最多25位，用户名后面紧跟@，
