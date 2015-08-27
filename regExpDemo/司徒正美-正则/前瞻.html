@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>前瞻</title>
+		<script type="text/javascript">
+			/*
+			 继续在分组内做文章。前瞻与后瞻其实都属于零宽断言，但javascript不支持后瞻。
+			 
+			   正则		    名称				描述
+			(?=exp)	        正向前瞻	              匹配exp前面的位置
+			(?!exp)	        负向前瞻	              匹配后面不是exp的位置
+			(?<=exp)	正向后瞻	              匹配exp后面的位置不支持
+			(?<!exp)	负向后瞻	              匹配前面不是exp的位置不支持
+
+			正向前瞻用来检查接下来的出现的是不是某个特定的字符集。而负向前瞻则是检查接下来的不应该出现的特定字符串集。
+			零宽断言是不会被捕获的。
+			 */
+			function log(val){
+				console.info(val);
+			}
+			var str1 = "bedroom";
+			var str2 = "bedding";
+			var reBed = /(bed(?=room))///在我们捕获bed这个字符串时，抢先去看接下来的字符串是不是room
+			log(reBed.test(str1));//true
+			log(RegExp.$1)//bed
+			log(RegExp.$2 === "")//true
+			log(reBed.test(str2))//false
+			/*			
+			前瞻
+				表达式				含义
+				exp1(?=exp2)	匹配后面是exp2的exp1
+				exp1(?!exp2)	匹配后面不是exp2的exp1
+			 */
+			
+			(/good(?=Byron)/).exec('goodByron123'); //['good']
+			(/good(?=Byron)/).exec('goodCasper123'); //null
+			(/bad(?=Byron)/).exec('goodCasper123');//null
+			//通过上面例子可以看出 exp1(?=exp2) 表达式会匹配exp1表达式，
+			//但只有其后面内容是exp2的时候才会匹配，也就是两个条件，exp1(?!exp2) 比较类似
+			(/good(?!Byron)/).exec('goodByron123'); //null
+			(/good(?!Byron)/).exec('goodCasper123'); //['good']
+			(/bad(?!Byron)/).exec('goodCasper123');//null
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

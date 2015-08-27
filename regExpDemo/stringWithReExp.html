@@ -41,6 +41,9 @@
 			var newstr = str.replace(reg, test); 
 			//log(str); 
 			//log(newstr); 
+			
+			
+			//split 方法
 			//另一个与之相似的是split 
 			var str = "a-bd-c"; 
 			var arr = str.split("-");//返回["a","bd","c"] 
@@ -49,6 +52,10 @@
 			re=/[^a-z]/i;//前面我们说^表示字符开始,但在[]里它表示一个负字符集 
 			//匹配任何不在指定范围内的任意字符,这里将匹配除字母处的所有字符 
 			arr = str.split(re);//仍返回["a","bd","c"]; 
+			
+			
+			
+			//search 方法
 			//在字符串中查找时我们常用indexOf,与之对应用于正则查找的方法是search 
 			str = "My age is 18.Golden age!";//年龄不是一定的,我们用indexOf不能查找它的位置 
 			re = /\d+/; 
@@ -57,6 +64,20 @@
 			//下面的代码虽然不出错,但g标志是多余的 
 			re=/\d+/g; 
 			log(str.search(re));//仍然是10 
+			
+			//match方法
+			/*类似于exec方法,String对象的match方法也用于将字符串与正则表达式进行匹配并返回结果数组 */
+			var str = "My name is CJ.Hello everyone!"; 
+			var re = /[A-Z]/;//匹配所有大写字母 
+			var arr = str.match(re);//返回数组 
+			alert(arr);//数组中只会包含一个M,因为我们没有使用全局匹配 
+			re = /[A-Z]/g; 
+			arr = str.match(re); 
+			alert(arr);//M,C,J,H 
+			//从字符串中抽取单词 
+			re = /\b[a-z]*\b/gi;//\b表示单词边界 
+			str = "one two three four"; 
+			alert(str.match(re));//one,two,three,four 
 		</script>
 	</head>
 	<body>
