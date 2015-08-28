@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+		function log(val){
+			console.info(val)
+		}
+			log(document.body.clientWidth);//网页可见区域的实际宽度
+			log(document.body.clientHeight);//页面浏览器中可以看到内容的这个区域的高度，一般是最后一个工具条以下到状态栏以上的这个区域，与页面内容无关。
+			/*offsetHeight  网页实际内容的高度 
+			IE、Opera 认为 offsetHeight = clientHeight + 滚动条 + 边框。 
+			NS、FF 认为 offsetHeight 是网页内容实际高度，可以小于 clientHeight*/
+			log(document.documentElement.scrollHeight)//滚动条所能滚动区域的高度
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

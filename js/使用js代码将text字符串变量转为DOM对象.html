@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function loadXMLString(txt){
+				try{
+					xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+					xmlDoc.async = "false";
+					xmlDoc.loadXML(txt);
+					return (xmlDoc);
+					
+				}catch(e){
+					try{
+						parser = new DOMParser();
+						xmlDoc = parser.parseFromString(txt,'text/xml');
+						//这个不会加上  html head body 这些标签
+						//xmlDoc = parser.parseFromString(txt,'text/html');
+						//这个会自动加上  html head body 这些标签
+					return (xmlDoc);
+					}catch(e){
+						alert(e.message);
+					}
+				
+				}
+				
+				return (null);
+			}
+			var text="<div id='overLay' style='width:50px;height:60px;background:url(imgs/back.png) left top no-repeat; position: absolute;'>"
+               + "<img style='margin-left:4px;margin-top: 3px;' src='ima.png' width='43px' height='43px'/>"
+               + "</div>";
+              console.info(loadXMLString(text)); 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

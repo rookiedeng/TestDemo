@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>label关键字</title>
+		<script type="text/javascript">
+		/*label语句用来在代码中加标签，从而可以在以后来使用它。
+		 * 一般情况下，加标签的语句要和for循环等循环语句配合来使用。*/
+			/*var num=0;
+			outer:
+			for(var i=0;i<10;i++){
+				for (var j=0;j<10;j++) {
+					if(i==5&&j==5){
+						break outer;
+					}
+					num++;
+				}
+				
+			}
+			console.log(num);//55*/
+			
+			var num=0;
+			outer:
+			for(var i=0;i<10;i++){
+				for (var j=0;j<10;j++) {
+					if(i==5&&j==5){
+						continue outer;
+					}
+					num++;
+				}
+				
+			}
+			console.log(num);//95
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
