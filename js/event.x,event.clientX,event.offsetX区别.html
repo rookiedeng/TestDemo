@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			clientX 设置或获取鼠标指针位置相对于窗口客户区域的 x 坐标，其中客户区域不包括窗口自身的控件和滚动条。
+			clientY 设置或获取鼠标指针位置相对于窗口客户区域的 y 坐标，其中客户区域不包括窗口自身的控件和滚动条。 
+			offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 x 坐标。 
+			offsetY 设置或获取鼠标指针位置相对于触发事件的对象的 y 坐标。 
+			screenX 设置或获取鼠标指针位置相对于用户屏幕的 x 坐标。 
+			screenY 设置或获取鼠标指针位置相对于用户屏幕的 y 坐标。 
+			x 设置或获取鼠标指针位置相对于父文档的 x 像素坐标。 
+			y 设置或获取鼠标指针位置相对于父文档的 y 像素坐标。
+			*/
+		</script>
+	</head>
+
+	<body>
+		<table border=1 cellpadding=15 cellspacing=15 style="position:relative;left:100;top:100">
+			<tr>
+				<td>
+					<div onclick="show()" style="background:silver;cursor:hand">
+						Click here to show.
+					</div>
+				</td>
+			</tr>
+		</table>
+		<script>
+			function show() {
+				alert("window.event.x:" +window.event.x
+				+ "\nwindow.event.y:" + window.event.y 
+				+ "\nevent.clientX:" + event.clientX 
+				+ "\nevent.clientY:" + event.clientY 
+				+ "\nevent.offsetX:" + event.offsetX 
+				+ "\nevent.offsetY:" + event.offsetY 
+				+ "\nwindow.event.screenX:" + window.event.screenX 
+				+ "\nwindow.event.screenY:" + window.event.screenY
+				);
+			}
+		</script>
+
+	</body>
+
+</html>

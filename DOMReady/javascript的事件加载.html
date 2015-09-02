@@ -1,0 +1,228 @@
+<!--http://www.cnblogs.com/rubylouvre/archive/2009/08/26/1554204.html
+		  /*那么我们要在什么时候执行上面的函数呢？我们仅讨论IE的情况。
+			在IE中，任何DOM元素都有一个doScroll 方法，无论它们是否支持滚动条。为了判断DOM树是否建成，我们只看看documentElement是否完整就是，
+			因为，它作为最外层的元素，作为DOM树的根部而存在，如果documentElement完整的话，就可以调用doScroll方法了。当页面一加载JS时，我们就执行此方法，
+			当然要如果documentElement还不完整就会报错，我们在catch块中重新调用它，一直到成功执行，成功执行时就可以调用fireContentLoadedEvent 方法了。
+			-->
+<!doctype html>
+<html dir="ltr" lang="zh-CN">
+  <head id="head">
+    <meta charset="utf-8"/>
+    <title>事件加载 by司徒正美</title>
+    <script type="text/javascript">
+    
+      window.DOMLoadEvents = [];
+      
+      var addDOMLoadEvent = function(handler) {
+        window.DOMLoadEvents[window.DOMLoadEvents.length]=handler
+      }
+      
+      var fireContentLoadedEvent = function() {
+        if (arguments.callee.loaded) return;
+        //让此函数仅仅执行一次
+        arguments.callee.loaded = true;
+        var handlers = window.DOMLoadEvents,
+        length = handlers.length;
+        for (var i=0; i<length; i++) {
+          var func = handlers[i];
+          func();//执行要在domReady运行的代码
+        }
+      }
+      
+      var pollDoScroll = function() {
+        try {
+          document.documentElement.doScroll('left');
+        }catch(e) {
+          setTimeout(arguments.callee, 1);
+          return;
+        }
+        fireContentLoadedEvent();
+      };
+      
+      if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
+      } else {
+        pollDoScroll();
+      }
+     
+      addDOMLoadEvent(function(){
+        alert("赶在页面加载完成alert一下！")
+      });
+      addDOMLoadEvent(function(){
+        alert("测试多重加载！")
+      });
+      addDOMLoadEvent(function(){
+        alert("测试多重加载！")
+      });
+    </script>
+  </head>
+  <body>
+    <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/199042/o_s005.jpg" alt="图片1" />
+    <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/199042/o_s006.jpg" alt="图片2" />
+    <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/199042/o_s007.jpg" alt="图片3" />
+    <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/199042/o_s008.jpg" alt="图片4" />
+    <img src="http://images.cnblogs.com/cnblogs_com/rubylouvre/199042/o_s009.jpg" alt="图片5" />
+    <table class="filament_table" cellspacing="0" width="700" rules="cols" >
+      <col class="grey" width="25%"></col>
+      <col class="yellow"></col>
+      <thead>
+        <tr>
+          <th>
+            参数
+          </th>
+          <th>
+            描述
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            scrollbarDown
+          </td>
+          <td>
+            Default. Down scroll arrow is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarHThumb
+          </td>
+          <td>
+            Horizontal scroll thumb or box is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarLeft
+          </td>
+          <td>
+            Left scroll arrow is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarPageDown
+          </td>
+          <td>
+            Page-down scroll bar shaft is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarPageLeft
+          </td>
+          <td>
+            Page-left scroll bar shaft is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarPageRight
+          </td>
+          <td>
+            Page-right scroll bar shaft is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarPageUp
+          </td>
+          <td>
+            Page-up scroll bar shaft is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarRight
+          </td>
+          <td>
+            Right scroll arrow is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarUp
+          </td>
+          <td>
+            Up scroll arrow is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            scrollbarVThumb
+          </td>
+          <td>
+            Vertical scroll thumb or box is at the specified location
+          </td>
+        </tr>
+        <tr>
+          <td>
+            down
+          </td>
+          <td>
+            Composite reference to scrollbarDown
+          </td>
+        </tr>
+        <tr>
+          <td>
+            left
+          </td>
+          <td>
+            Composite reference to scrollbarLeft
+          </td>
+        </tr>
+        <tr>
+          <td>
+            pageDown
+          </td>
+          <td>
+            Composite reference to scrollbarPageDown.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            pageLeft
+          </td>
+          <td>
+            Composite reference to scrollbarPageLeft.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            pageRight
+          </td>
+          <td>
+            Composite reference to scrollbarPageRight.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            pageUp
+          </td>
+          <td>
+            Composite reference to scrollbarPageUp.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            right
+          </td>
+          <td>
+            Composite reference to scrollbarRight.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            up
+          </td>
+          <td>
+            Composite reference to scrollbarUp.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>我们添加了些图片与表格延缓页面的加载速度</p>
+  </body>
+</html>

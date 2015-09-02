@@ -13,6 +13,8 @@
 			IE、Opera 认为 offsetHeight = clientHeight + 滚动条 + 边框。 
 			NS、FF 认为 offsetHeight 是网页内容实际高度，可以小于 clientHeight*/
 			log(document.documentElement.scrollHeight)//滚动条所能滚动区域的高度
+			//网页中获取滚动条卷去部分的高度，可以通过 document.body.scrollTop 来获取，比如使div跟着滚动条滚动：
+			log(document.body.scrollTop);
 		</script>
 	</head>
 	<body>

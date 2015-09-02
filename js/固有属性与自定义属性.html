@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			    javascript有两个很相近的东西，property与attribute，懒一点的人都翻译成“属性”。 如果专业点，则区别为“属性”与“特性”。
+			 我认为叫做固有属性与自定义属性比较好一点。
+			    property是来自于原型链，所有HTML元素，都是HTMLElemenet的实例，HTMLElement再往上走，就是 Element，再往上走就是Node，
+			 每一级原型都有属性。就算你没有在标签内显式定义这些属性，它们都存在。 比如title, id, class, lang, dir等等，你没有定义它们，
+			 它们就默认是一个空字符串。不同的标签都有自己独特 的固有属性，比如A标签的href，表单元素的tabindex标签。
+			    attributes是通过setAttribute设置，或者你<div aaa=bbb></div>这样添加的非固有属性外的属性，它们没有显式定义是为undefined, 
+			显式定义了，它的值肯定是一个字符串（固有属性没有这限制，比如tabindex的值为数字，option的selected为布尔， form的elements为一个类数组，五花八门的）
+			    property在标签中是存在映射，比如class，它会转换为className, for转换为forHtml, tab index转换为tabIndex， bgcolor转换bgColor....
+			而attribute则不存在映射，但只要你定义在的开标签内，它们就会全部小写化, 并将同名的属性进行合并，只留下第一个。
+			 * 
+			 * 
+			 * */
+		</script>
+	</head>
+	<body>
+		<!--attribute-->
+		<div>
+           <div id="test" aaa="1" aAa="2" aaA="3">11</div>
+        </div>
+        <script type="text/javascript">
+        	var el = document.getElementById('test')
+        	debugger
+        </script>
+	</body>
+</html>
+
+<!--
+	细节处见功力，只要你能区别开property与attribute，你就能窥探到DOM世界的庞然大厦。一个标签不是你想象中的那么简单，一个DIV标签是有七层原型链！
+			HTMLDivElement , HTMLElement, Element, Node, EventTarget, Function, Object
+每个浏览器在设计这些时，事先也没有打交道，于是一大堆兼容性问题在里面。IE在向W3C靠拢过程中，
+其属性系统发生了三次重大的转变。这些故事可以从我的书《javascript框架设计》(这里有源码)看到，或是以后有空我向大家披露一下！
+-->

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			//参考地址：http://www.cnblogs.com/rubylouvre/archive/2010/05/01/1725462.html
+			
+			//firfox
+			/* window.onload = function(){
+			        window.addEventListener("DOMMouseScroll",function(event){
+			          alert(event.type)
+			          alert(event.clientY)
+			        },false);
+			        var event = document.createEvent("MouseEvent");
+			        //为了证明分派成功，特意将其clientY设为90
+			        event.initMouseEvent("DOMMouseScroll",true, null, window,0,0,0,0,90,false,false,false,false,0,null);
+			        window.dispatchEvent(event) //委托事件与调用的元素链接起来，达到调用这个元素的事件 的 效果。
+     		 }*/
+			 /*
+			  initMouseEvent
+				void initMouseEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg, org.w3c.dom.views.AbstractView viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, boolean ctrlKeyArg, boolean altKeyArg, boolean shiftKeyArg, boolean metaKeyArg, short buttonArg, EventTarget relatedTargetArg)
+				initMouseEvent 方法用于初始化通过 DocumentEvent 接口创建的 MouseEvent 的值。此方法只能在通过 dispatchEvent 方法指派 MouseEvent 之前调用，尽管在该阶段可以多次调用它（如有必要）。如果被多次调用，则最后一次调用优先。
+				 
+				参数：
+				typeArg - 指定事件类型。
+				canBubbleArg - 指定该事件是否可以 bubble(冒泡)。
+				cancelableArg - 指定是否可以阻止事件的默认操作。
+				viewArg - 指定 Event 的 AbstractView。
+				detailArg - 指定 Event 的鼠标单击量。
+				screenXArg - 指定 Event 的屏幕 x 坐标
+				screenYArg - 指定 Event 的屏幕 y 坐标
+				clientXArg - 指定 Event 的客户机 x 坐标
+				clientYArg - 指定 Event 的客户机 y 坐标
+				ctrlKeyArg - 指定是否在 Event 期间按下 control 键。
+				altKeyArg - 指定是否在 Event 期间按下 alt 键。
+				shiftKeyArg - 指定是否在 Event 期间按下 shift 键。
+				metaKeyArg - 指定是否在 Event 期间按下 meta 键。
+				buttonArg - 指定 Event 的鼠标按键。
+				relatedTargetArg - 指定 Event 的相关 EventTarget。
+			  * 
+			  * 
+			  * */
+			 
+			 //标准浏览器
+			    window.addEventListener("mousewheel",function(event){
+		          alert(event.type)
+		          alert(event.clientX)
+		        },false);
+		        var event = document.createEvent("MouseEvent");
+		        //为了证明分派成功，特意将其clientX设为120
+		        event.initMouseEvent("mousewheel",true, null, window,0,0,0,120,0,false,false,false,false,0,null);
+		        window.dispatchEvent(event)
+			 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

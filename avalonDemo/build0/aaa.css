@@ -1,0 +1,21 @@
+#news .Q-tpList {
+    border: 1px solid #f0f0f0;
+    position: relative;
+    width:800px;
+    padding-bottom: 14px;
+}
+#news a{
+    color:black;
+    text-decoration: none;
+}
+#news .Q-tpList .pic {
+    margin: 13px 19px 0 0;
+    width: 120px;
+    height: 80px;
+    position: relative;
+}
+#news .Q-tpList em {
+    font: 20px/35px "微软雅黑","simhei";
+    margin: 8px 0 0;
+    display: inline-block;
+}
