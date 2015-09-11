@@ -1,0 +1,23 @@
+<!--这篇文章主要介绍了使用CSS禁止textarea调整大小功能的方法,禁止可以调整textarea大小功能的方法很简单,使用CSS的resize属性即可,
+	需要的朋友可以参考下
+如果你使用谷歌浏览器或火狐浏览器，你会发现页面上的textarea元素的右下角有个小三角，用鼠标箭头拖拽它，你的textarea就能随着放大或缩小。
+这是现代浏览器为方便用户而添加的一个辅助功能(很遗憾，不包括IE，如果你使用IE，是看不到的。)。Web程序员在设计网页时，
+一般给了textarea一个固定的长宽，通常是配合布局而设定。但挑剔的用户往往会认为太小或太大。有了这个可以调整大小的工具后，
+用户就可以自己选择合适的大小了。
+但是，有时候是应用的需要，Web程序员需要禁止这个可以调整textarea大小的功能(IE完全没这个问题！)，也就是去掉右下角的小三角，有什么办法呢？很简单，使用CSS的resize属性。-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+		textarea {
+			resize: none;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea rows="8" cols="20"  >
+			</textarea>
+	</body>
+</html>

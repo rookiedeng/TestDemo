@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.demo1{ height:500px; width:980px; margin:0 auto; background:#EEE; overflow:hidden;}
+			.demo1 div{margin:10% 5%; background:#666;}
+		</style>
+	</head>
+	<body>
+		<div class="demo1">
+    		<div>这个div设置：margin:10% 5%</div>
+		</div>
+	</body>
+</html>
+<!--
+	从上面的示例和代码，我们可以发现当margin设置成百分数的时候，其top right bottom left的值是参照父元素盒子的宽度进行计算，
+在w3c的规范中也是这样描述的： margin 的百分比值参照其包含块的宽度进行计算，同样的padding如果设置成百分数的话，其盒子模型和margin是一样的。
+这只发生在默认的 writing-mode: horizontal-tb; 和 direction: ltr; 的情况下，当书写模式变成纵向的时候，其参照将会变成包含块的高度。
+
+为什么要选择宽度做参照而不是高度呢？
+这其实更多的要从CSS设计意图上去想，因为CSS的基础需求是排版，而通常我们所见的横排文字，
+其水平宽度一定（仔细回想一下，如果没有显式的定义宽度 或者强制一行显示，都会遇到边界换行，而不是水平延展），
+垂直方向可以无限延展。但当书写模式为纵向时，其参照就变成了高度而不再是宽度了。
+-->
