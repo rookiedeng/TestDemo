@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {height:700px;}/*为了便于测试将body的高度拉大*/
+			#box {width:100px;height:100px;background:blue;display:none;}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+		</div>
+		<input type="button" id="button" value="show" />
+		<script type="text/javascript">
+			$("#button").click(function(event){
+		        $("#box").show();
+		        event.stopPropagation();//阻止冒泡
+			});
+			$("body").click(function(){
+			     $("#box").hide();
+			})
+			$('#box').click(function(){
+		     	return false;
+		    })
+		</script>
+		<!--有一个很笨的方法就是在body里绑定一下onclick事件，然后判断那个点击事件的srcElement是否等于你那个div，不是的话就隐藏-->
+	</body>
+</html>

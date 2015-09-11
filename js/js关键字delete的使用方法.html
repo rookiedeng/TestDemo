@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+/*
+ 删除对象的属性，删除后不能使用 for/in 枚举出删除的属性，使用hasOwnProperty()检测该属性返回false。
+删除数组的元素，删除后数组的 length 不会改变，不可以使用 for/in 枚举出来删除的元素； 
+shift()、pop()、splice()才会真正的删除数组中的元素
+*/
+			var point = { x:1, y:1 };
+			delete point.x;  //{ y:1 }
+			var arr = ['one', 'two'];
+			delete arr[0];  //[undefined, 'two'] 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

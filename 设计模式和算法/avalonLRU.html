@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>avalon中LRU的实现</title>
+		<script type="text/javascript">
+			//https://github.com/RubyLouvre/avalon/blob/1.5/src/03%20cache.js
+			var Cache = new function() {// jshint ignore:line
+			    function LRU(maxLength) {
+			        this.size = 0
+			        this.limit = maxLength
+			        this.head = this.tail = void 0 //void 0 : undefined
+			        this._keymap = {}
+			    }
+			
+			    var p = LRU.prototype
+			
+			    p.put = function(key, value) {
+			        var entry = {
+			            key: key,
+			            value: value
+			        }
+			        this._keymap[key] = entry
+			        if (this.tail) {
+			            this.tail.newer = entry
+			            entry.older = this.tail
+			        } else {
+			            this.head = entry
+			        }
+			        this.tail = entry
+			        if (this.size === this.limit) {
+			            this.shift()
+			        } else {
+			            this.size++
+			        }
+			        return value
+			    }
+			
+			    p.shift = function() {
+			        var entry = this.head
+			        if (entry) {
+			            this.head = this.head.newer
+			            this.head.older =
+			                    entry.newer =
+			                    entry.older =
+			                    this._keymap[entry.key] = void 0
+			        }
+			    }
+			    p.get = function(key) {
+			        var entry = this._keymap[key]
+			        if (entry === void 0)
+			            return
+			        if (entry === this.tail) {
+			            return  entry.value
+			        }
+			        // HEAD--------------TAIL
+			        //   <.older   .newer>
+			        //  <--- add direction --
+			        //   A  B  C  <D>  E
+			        if (entry.newer) {
+			            if (entry === this.head) {
+			                this.head = entry.newer
+			            }
+			            entry.newer.older = entry.older // C <-- E.
+			        }
+			        if (entry.older) {
+			            entry.older.newer = entry.newer // C. --> E
+			        }
+			        entry.newer = void 0 // D --x
+			        entry.older = this.tail // D. --> E
+			        if (this.tail) {
+			            this.tail.newer = entry // E. <-- D
+			        }
+			        this.tail = entry
+			        return entry.value
+			    }
+			    return LRU
+			}// jshint ignore:line
+			var lru = new Cache(5);
+			var  arr = [4,7,0,7,1,0,1,2,1,2,6];  
+			lru.put(1,4);
+			lru.put(2,7);
+			lru.put(3,0);
+			lru.put(4,7);
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

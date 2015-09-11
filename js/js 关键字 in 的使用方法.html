@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			//当“对象”为数组时，“变量”指的是数组的“索引”；
+			var arr = ["a","b","2","3","str"];
+			var result = ("b" in arr);
+			var result1 = (4 in arr);
+			console.info(result);//false
+			console.info(result1);//true
+			
+			//　当“对象”为对象是，“变量”指的是对象的“属性”。可以是继承过来的
+			var obj={
+		         w:"wen",
+		         j:"jian",
+		         b:"bao"
+    		}
+			var result=(2 in obj);    
+			var result1=("j" in obj);
+			console.info(result);
+			console.info(result1);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
