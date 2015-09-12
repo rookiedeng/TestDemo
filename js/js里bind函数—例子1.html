@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>bind函数</title>
+		<script type="text/javascript">
+/*
+var bind = Function.prototype.call.bind(Function.prototype.bind);
+第一眼看上去，我能猜出它究竟是用来做什么的。它把x.y(z)转化成了y(x,z)。我欣喜万分的给我的同事看这段代码。
+他们问我这是什么意思。而我当我正要开口向他们解释时却发现不知道怎么说才好。我徘徊了一会然后郁闷的走开了。
+编写良好的代码会向人们传达它的作用。在读完Functional Javascript和 JavaScript Allongé （两本都是相当好的书）这两本书之后，
+再加上我在Javascript函数式编程方面有些经验，弄懂上面这段代码的意思毫无压力。但是应该怎么向没有函数式编程经验的人解释呢（正如大多数人关心的那样）？
+我决定亲自来完成这个任务，通过简单地例子和注释。我的结果如下所示：
+*/
+	//设立一个简单地对象作为“上下文”
+	var context = { foo: "bar" };
+	
+	//一个在this上下文中指向foo变量的函数
+	function returnFoo () {
+	  return this.foo;
+	}
+	
+	// 变量在作用域中不存在，因此显示undefined
+	returnFoo(); // => undefined
+	
+	// 如果我们把它绑定在context上下文中
+	var bound = returnFoo.bind(context);
+	
+	// 现在的作用域中有这个变量了
+	console.info(bound()) // => "bar"
+	
+	// 这就是Function.prototype.bind的作用.    
+	//由于returnFoo也是函数，因此它继承了function的原型
+	//
+	// 如果你觉得享受，接着往下读，下面更精彩
+
+	// 有许多方法将函数绑定在一个上下文中
+	// Call和Apply让你能在上下文中调用函数
+	returnFoo.call(context); // => bar
+	returnFoo.apply(context); // => bar
+	
+	// 将函数添加到对象中
+	context.returnFoo = returnFoo;
+	context.returnFoo(); // => bar
+	
+	// Array.prototype 中有一个叫做slice的方法
+	// 对一个数组调用slice，可以返回一个从start index到end index的数组
+	[1,2,3].slice(0,1); // => [1]
+	
+	// 因此我们把Array.slice赋值给一个本地变量slice
+	var slice = Array.prototype.slice;
+	
+	//现在的slice是"自由的"，由于Array.prototype中的slice一般指定了上下文
+	//或者默认为this,此时slice将不起作用
+	slice(0, 1); // => TypeError: can't convert undefined to object
+	slice([1,2,3], 0, 1); // => TypeError: ...
+	
+	// 但是如果我们使用call或者apply，slice又将在一个上下文中执行
+	slice.call([1,2,3], 0, 1); // => [1]
+	
+	// Apply和Call差不多，知识参数要放在一个数组中
+	slice.apply([1,2,3], [0,1]); // => [1]
+	
+	
+	// 使用call没错了，那么能不能使用bind呢？
+	// 没错，我们来把"call"绑定在slice上
+	slice = Function.prototype.call.bind(Array.prototype.slice);
+	
+	// 现在slice可以把第一个参数作为上下文了
+	slice([1,2,3], 0, 1); // => [1]
+	
+	
+	//
+	// 很酷，对吧。现在再来完成一件事
+	//
+	
+	// 现在我们对bind本身做一件刚才对silce做的事
+	var bind = Function.prototype.call.bind(Function.prototype.bind);
+	
+	// 在这里总结一下，好好想想
+	// 发生了什么事? 我们改变了call，
+	// 返回一个接收一个函数和一个上下文作为ic桉树的函数
+	// 并且返回了一个完全绑定的函数
+	
+	// 回到最初的例子
+	var context = { foo: "bar" };
+	function returnFoo () {
+	  return this.foo;
+	}
+	
+	// 现在来使用神奇的"bind"函数
+	var amazing = bind(returnFoo, context);
+	amazing(); // => bar
+	
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

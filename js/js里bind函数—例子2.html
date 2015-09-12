@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>bind函数</title>
+		<script type="text/javascript">
+			//例题1：
+			function tt()
+			{
+				alert(arguments.callee == tt);//true
+				alert(this);//“1”
+			}
+			var i = "1";
+			var i1 = tt.bind(i);
+			window.i1();
+/* 根据输出，我的理解是：函数经过bind后，会生成一个本地函数i1，
+ * i1里会有一个对函数tt的引用，并非函数tt的一个副本，所以第一个alert会输出true；
+      而函数一旦经过bind，即便指定了调用者，那么this仍然是bind指定的this，也就是"1"。*/
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
