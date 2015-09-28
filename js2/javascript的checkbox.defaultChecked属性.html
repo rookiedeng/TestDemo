@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset=" utf-8"> 
+<meta name="author" content="http://www.softwhy.com/" /> 
+<title>蚂蚁部落</title> 
+<script type="text/javascript"> 
+/*
+	 defaultChecked属性的定义和用法:
+	此属性可以返回复选框默认是否被选中。
+	如果默认状态下被选中，则返回true，否则返回false。
+	语法结构:
+	
+	checkbox.defaultChecked
+	说明:checkbox表示一个checkbox复选框对象。
+	浏览器支持:
+	1.IE浏览器支持此属性。
+	2.火狐浏览器支持此属性。
+	3.Opera浏览器支持此属性。
+	4.谷歌浏览器支持此属性。
+*/
+window.onload=function(){ 
+  var ck=document.getElementById("ck"); 
+ 	 ck.checked=true; 
+  document.write(ck.defaultChecked); 
+} 
+/*
+ 	以上代码可以输出复选框对象的defaultChecked属性值。需要注意的是，尽管复选框后来被选中，但是在默认状态下是不选中的，所以输出值仍然为false。
+ * */
+</script> 
+</head> 
+<body> 
+	<input type="checkbox" id="ck" value="蚂蚁部落/">
+</body> 
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--
+			就是操作 LINK 标签和style标签中的css样式
+			博客地址： DOM与CSS样式表：http://www.cnblogs.com/zichi/p/4841463.html
+				   DOM与元素节点内联样式：http://www.cnblogs.com/zichi/p/4840930.html 
+			总结：1、<style></style>与<link></link>的对象就是：CSSStyleSheet
+			   	        调用方法:el.sheet
+			   	2、style 属性：  style 对象是个 CSSStyleDeclaration 对象，它不仅提供了单个 CSS 属性的访问方式
+				 也提供 setProperty()、getPropertyValue()以及removeProperty() 方法
+		-->
+		<link id='linkElement' href='h.css' rel='stylesheet' type='text/css'>
+		<style id='styleElement'>
+		  div {
+		    background-color: black;
+		  }
+		</style>
+		
+		<script>
+		/*通过使用 HTMLLinkElement 节点引入外部样式表，或者使用 HTMLStyleElement 节点来定义内联样式表，都可以添加样式表到 HTML 文档。
+			在如下 HTML 文档中，这两种 Element 节点都在 DOM 中，并且我们可以验证哪个构造器构造了这些节点。
+		 */
+		  // 输出 function HTMLLinkElement() { [native code] }
+		  console.log(document.querySelector('#linkElement').constructor);
+		  // 输出 function HTMLStyleElement() { [native code] } 
+		  console.log(document.querySelector('#styleElement').constructor);
+	
+		/*
+			 * 一有样式表添加到 HTML 文档中，它即表示为 CSSStyleSheet 对象。样式表里每条 CSS 规则（如 div {background-color: black;}）
+			 * 都表示为一个 CSSStyleRule 对象。在如下代码中，我们可以验证是哪个构造器构造了样式表中的每个 CSS 规则。
+			 */
+		  // 输出 function CSSStyleSheet() { [native code] } 
+ 			 console.log(document.querySelector('#linkElement').sheet.constructor);
+
+		  // 输出 function CSSStyleRule() { [native code] }
+ 			 console.log(document.querySelector('#styleElement').sheet.cssRules[0].constructor);
+ 			 console.log(document.styleSheets[0]); // <link>
+			 console.log(document.styleSheets[1]); // <style>
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

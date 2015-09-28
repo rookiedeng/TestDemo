@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+			}
+			div:hover{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test"></div>
+		<script type="text/javascript">
+			//jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。
+			var dom = document.getElementById("test"),
+    		style = window.getComputedStyle(dom , ":hover");
+    		/*
+    		 就两个参数，大家都懂中文的，没什么好说的。只是额外提示下：Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1) 之前，第二个参数“伪类”是必需的（如果不是伪类，设置为null），不过现在嘛，不是必需参数了。
+			三、getComputedStyle与style的区别
+			我们使用element.style也可以获取元素的CSS样式声明对象，但是其与getComputedStyle方法还有有一些差异的。
+			1、只读与可写
+			正如上面提到的getComputedStyle方法是只读的，只能获取样式，不能设置；而element.style能读能写，能屈能伸。
+			2、获取的对象范围
+			getComputedStyle方法获取的是最终应用在元素上的所有CSS属性对象（即使没有CSS代码，也会把默认的祖宗八代都显示出来）；而element.style只能获取元素style属性中的CSS样式。因此对于一个光秃秃的元素<p>，
+			getComputedStyle方法返回对象中length属性值（如果有）就是190+(据我测试FF:192, IE9:195, Chrome:253, 不同环境结果可能有差异), 而element.style就是0。
+    		 * 
+    		 * */
+    		
+    		/*
+    		 * getPropertyValue方法
+				getPropertyValue方法可以获取CSS样式申明对象上的属性值（直接属性名称），例如：
+				window.getComputedStyle(element, null).getPropertyValue("float");
+				如果我们不使用getPropertyValue方法，直接使用键值访问，其实也是可以的。但是，比如这里的的float，如果使用键值访问，则不能直接使用getComputedStyle(element, null).float，
+				而应该是cssFloat与styleFloat，自然需要浏览器判断了，比较折腾！
+				使用getPropertyValue方法不必可以驼峰书写形式（不支持驼峰写法），例如：style.getPropertyValue("border-top-left-radius");
+    		 */
+    		style.getPropertyValue('width');
+    		debugger
+		</script>
+	</body>
+</html>
