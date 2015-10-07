@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var json = {"name":"json","getName":"function (){\n\t\t\t\t     return this.name;   \n\t\t\t\t  }"};
+			console.log(
+				JSON.parse(json,function(k,v){
+					if(v.indexOf()&&v.indexOf('function')){
+						return eval("(function(){return "+v+" })()")
+						}
+				})
+			)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

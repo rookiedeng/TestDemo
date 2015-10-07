@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="a.js"></script>
+		<script type="text/javascript" src="b.js"></script>
+		<script type="text/javascript">
+			function getInteractiveScript(){
+			    if(document.currentScript){
+			        return document.currentScript;
+			    }
+			    var els = document.getElementsByTagName("script");
+			    for(var i = 0, el; el = els[i++];){
+			        if (el.readyState === 'interactive') {
+			            return el
+			        }
+			    }
+			    return null
+			}
+			console.info(getInteractiveScript()+"-------index");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

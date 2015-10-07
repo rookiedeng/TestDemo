@@ -1,0 +1,74 @@
+<!--
+	博客地址：http://www.cnblogs.com/zichi/p/4842646.html
+
+	当在 Web 浏览器中查看 HTML 文档时，DOM 节点被解析，并被渲染成盒模型（如下图），有时我们需要知道一些信息，比如盒模型的大小，盒模型在浏览器中的位置等等，本文我们就来详细了解下元素节点的几何量以及滚动几何量
+	1、获取元素相对于 offsetParent 的 offsetTop 以及 offsetLeft 值
+		使用 offsetTop 和 offsetLeft 属性，我们可以获取元素节点相对于 offsetParent 的偏移像素量。这些元素节点属性告诉我们某元素上部与左侧边框最外沿到 offsetParent 上部和左侧边框内部的距离，以像素为单位。
+	offsetParent 的值判定依据为查找离该元素最近的 CSS 定位值不为 static 的祖先元素(默认情况下position的值为static)。如果没有，则 <body> 元素，某些人或称之为“文档”（而不是浏览器视区），即为 offsetParent 值。如果，在查询祖先过程中，
+	找到 <td> <th> 或 <table> 元素，且它的定位为 static，则它将成为 offsetParent 的值。
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+			}
+			#blue {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				border: 10px solid gray;
+				padding: 25px;
+				margin: 25px;
+			}
+			#red {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				border: 10px solid gray;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id='blue'>
+			<div id='red'></div>
+		</div>
+		<script>
+			var myDiv = document.querySelector('#red');
+			console.log(myDiv.offsetLeft); // 60
+			console.log(myDiv.offsetTop); // 60
+			console.log(myDiv.offsetParent); // body
+			
+			/*
+			2、使用 getBoundingClientRect() 获取元素相对于视区的 Top、Right、Buttom 以及 Left 边沿偏移量
+				使用 getBoundingClientRect() 方法，我们可以获取元素外边沿的位置。元素调用 getBoundingClientRect() 方法后会返回一个对象，该对象包含 top、right、bottom 以及 left 属性。
+			 * */
+			 var divEdges = document.querySelector('#blue').getBoundingClientRect();
+
+			  console.log(divEdges.top); // 25
+			  console.log(divEdges.right);  // 195
+			  console.log(divEdges.bottom);  // 195
+			  console.log(divEdges.left);  // 25
+			
+			/*元素大小的获取*/
+			  var div = document.querySelector('#blue')
+			    , divEdges = div.getBoundingClientRect();
+			
+			  // 获取元素大小
+			  // border + pading + content
+			  console.log(divEdges.width, divEdges.height); // 170 120
+			
+			  // 也能取得元素大小
+			  console.log(div.offsetWidth, div.offsetHeight); // 170 120
+			
+			  // padding + content 不含 border
+			  console.log(div.clientWidth, div.clientHeight); // 150 100
+	</script>
+	</body>
+
+</html>

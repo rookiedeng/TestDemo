@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var json={
+				  name:'json',
+				  getName:function(){
+				     return this.name;   
+				  }
+			}
+			console.info(
+				JSON.stringify(json,function(key,val){
+						 if (typeof val === 'function') {
+						    return val + '';
+						  }
+						  return val;
+					})
+				);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

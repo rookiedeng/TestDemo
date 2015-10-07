@@ -1,0 +1,76 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		  * {
+		    margin: 0;
+		    padding: 0;
+		  }
+		
+		  div {
+		    width: 100px;
+		    height: 100px;
+		    overflow: auto;
+		  }
+		
+		  p {
+		    width: 1000px;
+		    height: 1000px;
+		    background-color: red;
+		  }
+		</style>
+	</head>
+	<body>
+		<div><p></p></div>
+		<script>
+			  var div = document.querySelector('div');
+			
+			  // 获取滚动元素的宽和高
+			  console.log(div.scrollWidth, div.scrollHeight);  // 1000 1000
+			
+			  // scrollLeft 和 scrollTop 属性都是读写属性
+			  // 返回可滚动视区中因为滚动而暂时不可见的元素距离左边和上边的像素距离
+			
+			  div.scrollLeft = 500;
+			  div.scrollTop = 500;
+			
+			  console.log(div.scrollLeft, div.scrollTop);  // 500 500
+		</script>
+	</body>
+</html>-->
+<style>
+  div {
+    width: 30px;
+    height: 30px;
+    overflow: auto;
+  }
+
+  p {
+    background-color: red;
+  }
+</style>
+
+<div>
+  <content>
+    <p>0</p>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+  </content>
+</div>
+
+<script>
+/*
+            使用 scrollIntoView() 滚动元素到视区
+	选取可滚动节点中某一节点后，我们可以使用 scrollIntoView() 方法告诉选取的节点滚动到可视区域。
+*/
+  document.querySelector('content').children[4].scrollIntoView(true);
+</script>
