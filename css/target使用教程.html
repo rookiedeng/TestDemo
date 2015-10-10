@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 :target是CSS里一个非常有趣的伪选择器。它在CSS里发生效力的过程是这样的：
+			 当浏览器地址里的hash(地址里#号后面的部分)和:target伪选择器指定的ID匹配上时，它的样式就会在这个ID元素上生效。
+			 */
+			/* would apply to all targetted elements */
+			/*:target {
+				color: #000;
+			}*/
+			/*当window.location.hash是”section2″时，ID为”section2″（所以元素都行）将会变红，并显示下划线。*/
+			
+			/* applies to H2's */
+			div:target {
+				color: red;
+			}
+			/*当window.location.hash是”section2″时，ID为”section2″并且该ID是作用在div上面的元素将会变红，并显示下划线。*/
+		</style>
+	</head>
+	<body>
+		下面的两个HTML元素上我们都指定了ID：
+
+			<h2 id="section1">Section 1</h2>
+			
+			<h2 id="section2">Section 2</h2>
+		
+		注意上面元素的ID值，当:target指定的ID和window.location.hash值一致时，伪选择器的样式将会生效。
+	</body>
+</html>

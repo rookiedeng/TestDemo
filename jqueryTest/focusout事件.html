@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/jquery-1.11.3.js"></script>
+	</head>
+	<body>
+		<p>
+			<input type="text" />
+			<span>focusout fire</span>
+		</p>
+		<p>
+			<input type="password" /> 
+			<span>focusout fire</span>
+		</p>
+		<script type="text/javascript">
+		/*
+		 当元素失去焦点时触发 focusout 事件。
+		focusout事件跟blur事件区别在于，他可以在父元素上检测子元素失去焦点的情况。
+		
+		语法：focusout([data],fn)
+		fn：在每一个匹配元素的focusout事件中绑定的处理函数。
+		
+		data:focusout([Data], fn) 可传入data供函数fn处理。
+		fn:在每一个匹配元素的focusout事件中绑定的处理函数。
+		*/
+			$("p").focusout(function() {
+  				$(this).find("span").css('display','inline').fadeOut(1000);
+			});
+		</script>
+	</body>
+</html>

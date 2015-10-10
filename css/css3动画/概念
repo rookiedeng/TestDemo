@@ -1,0 +1,7 @@
+地址：http://www.cnblogs.com/fxycm/p/4637674.html
+css3 动画
+　　在CSS3中可以通过animation创建复杂的动画序列，像transition属性一样用来控制CSS的属性实现动画效果。
+　　animation实现动画效果主要由两个部分组成。
+
+通过类似Flash动画中的关键帧来声明一个动画。
+在animation属性中调用关键帧声明的动画，从而实现一个更为复杂的动画效果。

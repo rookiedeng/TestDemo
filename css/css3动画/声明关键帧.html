@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/*声明关键帧
+　　在CSS3中，把@keyframes称为关键帧。
+　　@keyframes的语法规则：命名是由@keyframes开头，后面紧跟着动画的名称(animation-name)，再加上一对花括号"{...}"，括号中是多个不同时间段的样式规则。
+	一个@keyframes中的样式规则是由多个百分比构成的，每个百分比样式规则可以设置不同的样式属性。可以使用关键词“from”，“to”代表一个动画的开始与结束，“from”相当于0%，"to"相当于100%。
+			 */
+			
+			@keyframes demo1{
+				 0% {
+				    margin-left: 100px;
+				    background: green;
+				 }
+				 40% {
+				    margin-left: 150px;
+				    background: orange;
+				 }
+				 60% {
+				    margin-left: 75px;
+				    background: blue;
+				 }
+				 100% {
+				    margin-left: 100px;
+				    background: red;
+				 }
+			}
+			/*这里我们定义了一个叫“yxz”的动画，他的动画是从0%开始到100%时结束，从中还经历了一个40%和60%两个过程，上面代码具体意思是：“yxz”动画在0%时元素定位到left为100px的位置背景色为green，
+			 * 然后40%时元素过渡到left为150px的位置并且背景色为orange，60%时元素过渡到left为75px的位置,背景色为blue，最后100%结束动画的位置元素又回到起点left为100px处,背景色变成red。*/
+	/*	在@keyframes中的关键帧并不是一定要按照顺序来指定，其实可以任何顺序来指定关键帧，因为动画中的关键帧顺序由百分比值确定而不是声明的顺序。*/
+		@keyframes demo2{
+			0%,40%{
+				width:200px;
+				height:200px;
+			}
+			20%,60%,80%{
+				width:100px;
+				height:100px;
+			}
+			100%{
+				width:0;
+				height:0;
+			}
+		}
+　/*　在这个例子中，0%，40%应用了相同的样式，20%，60%，80%也应用了相同的样式，100%时又是另外的样式。
+　　这两个动画，因为他们并没有附加到任何元素上，是没有效果的。通过声明@keyframes动画后，要让动画生效，需要通过CSS属性来调用@keyframes声明的动画。
+		*/
+		
+		</style>
+	</head>
+	<body>
+	</body>
+</html>

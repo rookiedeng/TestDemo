@@ -1,0 +1,42 @@
+　使用动画属性animation调用@keyframes声明的动画。 动画属性animation，是一个复合属性，它包含了八个子属性。其语法如下：
+
+animation:[<animation-name> || <animation-duration> || <animation-timing-function> || <animation-delay> || <animation-iteration-count> || 
+<animation-direction> || <animation-play-state> || <animation-fill-mode>] *
+
+　animation-name：主要用来指定一个关键帧动画的名字，这个名字要与@keyframes声明的名称一样。css加载动画时会应用对应的名字来执行。
+
+animation-name:none | IDENT [,none | IDENT] *
+　　IDENT：是由@keyframes创建的动画名称。
+　　none：默认值，当值为none时，没有任何动画效果，可以用来覆盖动画。
+
+　　animation-duration：主要用来设置动画播放所需要的时间，单位以s(秒)或ms(毫秒),默认值为0。
+
+animation-duration:<time> [,<time>] *
+　　animation-timing-function：主要用来设置动画的播放快慢方式。
+
+　　与transition-timing-function类似，可点击查看。
+
+　　animation-delay：主要用来设置动画延迟时间。
+
+animation-duration:<time> [,<time>] *
+　　当time为正整数时为延迟时间，负整数时会截断播放时间(把animation-duration所用的时间截断一部分，就是说跳过这部分值，直接进行后面的动画)　　
+
+　　animation-iteration-count：主要用来设置动画播放的次数。
+
+animation-iteration-count: infinite | <number> [,infinite | <number>] *
+　　通常为整数，也可以使用浮点数。默认值为1。如果取值为infinite，动画会无限播放。
+
+　　animation-direction：主要用来设置动画播放的方向。
+
+animation-direction:normal | alternate [,normal | alternate] *  
+　　默认值为normal，动画每次循环都是向前播放。alternate，动画向前播放一次，向后播放一次。
+
+　　animation-play-state：主要用来控制动画播放的状态。
+
+animation-play-state:running | paused [,running | paused] *
+　　running是默认值，是播放的意思，可以通过paused停止播放。
+
+　　animation-fill-mode：主要用来设置动画时间之外的属性，也就是动画开始前或者结束后的属性。
+
+animation-fill-mode:none | forwards | backwards | both
+　　默认值为none，表示动画按期执行与结束，在动画结束时，会反回初始状态。forwards，当动画结束时，停留在最后最后一帧(保持最后的状态)。backwards，当动画开始时迅速应用第一帧。both，同时拥有forwards与backwards的作用。

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--<script type="text/javascript">
+			/*在Web开发中，图片预加载是一种常用的技术，如果直接给某个img标签节点设置src属性，由于图片过大或者网络不佳，
+						 * 图片的位置往往有段时间会是一片空白。常见的做法是先用一张小图片占位，然后用异步的方式加载图片，等图片加载好了再把它填充到img节点里，这种场景就很适合使用虚拟代理。
+						　　下面我们来实现这个虚拟代理，首先创建一个普通的本体对象，这个对象负责往页面中创建一个img标签，
+							并且提供一个对外的setSrc接口，外界调用这个接口，便可以给该img标签设置src属性：*/
+			var myImage = (function() {
+				var imgNode = document.createElement('img');
+				document.body.appendChild(imgNode);
+				return {
+					setSrc: function(src) {
+						imgNode.src = src;
+					}
+				};
+			})();
+			myImage.setSrc('https://img.alicdn.com/imgextra/i1/2406102577/TB2QCq1fVXXXXXvXXXXXXXXXXXX_!!2406102577.jpg');
+		</script>-->
+		<script type="text/javascript">
+			/*如果你网速够慢的话，加载这张图片是需要一段时间的。现在我们引入代理对象ProxyImage，通过这个代理对象，
+			 *在图片真正被加载好之前，页面将出现一张用来占位的小图片，来提示用户图片正在加载。代码如下：*/
+			var myImage = (function() {
+				var imgNode = document.createElement('img');
+				document.body.appendChild(imgNode);
+				return {
+					setSrc: function(src) {
+						imgNode.src = src;
+					}
+				}
+			})();
+			var proxyImage = (function() {
+				var img = new Image;
+				//当大图加载好后再次调用函数改变myImage.src的值
+				img.onload = function() {
+					debugger
+					myImage.setSrc(img.src);
+				};
+				return {
+					setSrc: function(src) {
+						//占位图
+						myImage.setSrc('http://job.cnblogs.com/image/job_logo.gif');
+						//把大图让给img慢慢加载
+						img.src = src;
+					}
+				}
+			})();
+			proxyImage.setSrc('https://img.alicdn.com/imgextra/i1/2406102577/TB2QCq1fVXXXXXvXXXXXXXXXXXX_!!2406102577.jpg');
+			/*现在我们通过proxyImage间接的访问myImage。proxyImage控制了客户对myImage的访问，并且在此过程中加入一些额外的操作，比如在真正的图片加载好之前，先把imgNode.src设置为一张小图片。*/
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!--
+	但有时点击元素时不想要被选定的状态，有一个尚未成为标准的 CSS 属性： user-select，它有 4 个值：
+		text 可以选择文本
+		element 可以选择文本，但选择范围受元素边界的约束。
+		none 不可以选择文本。
+		auto 如果该元素包含可编辑的文本（如输入元素或可编辑内容的元素），则可以选择文本。否则，元素内容是否可选择由父节点的值决定。
+目前Firefox/Chrome/IE10+已经支持了，但需要加前缀
+	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.unselect {
+			    -moz-user-select: none;
+			    -webkit-user-select: none;
+			    -ms-user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="unselect">您选定不了我,您选定不了我,您选定不了我,您选定不了我,您选定不了我</div>
+	</body>
+</html>
