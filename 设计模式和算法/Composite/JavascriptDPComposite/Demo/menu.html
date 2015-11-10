@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Composite Pattern</title>
+
+    <script type="text/javascript" src="script/Array.js"></script>
+    <script type="text/javascript" src="script/InterfaceAndClass.js" charset="gb2312"></script>
+    <script type="text/javascript" src="script/composite/MenuComponent.js"></script>
+    <script type="text/javascript" src="script/composite/Menu.js"></script>
+    <script type="text/javascript" src="script/composite/MenuItem.js"></script>
+    <script type="text/javascript" src="script/composite/MenuOpr.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="script/composite/style.css" />
+
+    <script type="text/javascript">
+    window.onload = function() {
+
+        var menu1 = new MenuItem("菜单1","菜单1","#");
+        
+        var menu2 = new Menu("菜单2","菜单2","#");
+        var menu2_1 = new MenuItem("菜单2-1", "菜单2-1", "#");
+        var menu2_2 = new Menu("菜单2-2", "菜单2-2", "#");
+        var menu2_2_1 = new MenuItem("菜单2-2-1", "菜单2-2-1", "#");
+        var menu2_2_2 = new MenuItem("菜单2-2-2", "菜单2-2-2", "#");
+        var menu2_3 = new MenuItem("菜单2-3","菜单2-3","#");
+        menu2.add(menu2_1);
+        menu2.add(menu2_2);
+        menu2_2.add(menu2_2_1);
+        menu2_2.add(menu2_2_2);
+//        menu2_2.remove(menu2_2_2);
+        
+        menu2.add(menu2_3);
+        
+        var menu3 = new Menu("菜单3","菜单3","#");
+        var menu3_1 = new MenuItem("菜单3-1","菜单3-1","#");
+        menu3.add(menu3_1);
+        
+        var menu4 = new MenuItem("菜单4","菜单4","#");
+        
+        MenuOpr.add(menu1);
+        MenuOpr.add(menu2);
+        MenuOpr.add(menu3);
+        MenuOpr.add(menu4);
+        
+        MenuOpr.print("main_container");
+    }
+    </script>
+    <script type="text/javascript" src="script/composite/MenuAdapter.js"></script>
+
+</head>
+<body>
+	<<p>地址：http://www.cnblogs.com/liping13599168/archive/2009/01/15/1375390.html</p>
+    <div class="main_container" id="main_container">
+    </div>
+</body>
+</html>

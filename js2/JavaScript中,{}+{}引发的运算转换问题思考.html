@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div><a href="http://www.cnblogs.com/ziyunfei/archive/2012/09/15/2685885.html">博客地址</a></div>
+1.类型转换
+	加法运算符会触发三种类型转换:将值转换为原始值,转换为数字,转换为字符串,这刚好对应了JavaScript引擎内部的三种抽象操作:ToPrimitive(),ToNumber(),ToString()
+
+1.1 通过ToPrimitive()将值转换为原始值
+JavaScript引擎内部的抽象操作ToPrimitive()有着这样的签名:
+    ToPrimitive(input, PreferredType?)
+可选参数PreferredType可以是Number或者String,它只代表了一个转换的偏好,转换结果不一定必须是这个参数所指的类型,但转换结果一定是一个原始值.如果PreferredType被标志为Number,则会进行下面的操作来转换输入的值 (§9.1):
+如果输入的值已经是个原始值,则直接返回它.
+否则,如果输入的值是一个对象.则调用该对象的valueOf()方法.如果valueOf()方法的返回值是一个原始值,则返回这个原始值.
+否则,调用这个对象的toString()方法.如果toString()方法的返回值是一个原始值,则返回这个原始值.
+否则,抛出TypeError异常.
+如果PreferredType被标志为String,则转换操作的第二步和第三步的顺序会调换.如果没有PreferredType这个参数,则PreferredType的值会按照这样的规则来自动设置:Date类型的对象会被设置为String,其它类型的值会被设置为Number.
+	</body>
+</html>

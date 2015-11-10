@@ -1,0 +1,24 @@
+body>div{
+	position: relative;
+	float:  left;
+	width: 250px;
+	height: 900px;
+	border: 1px solid darkcyan;
+	margin-right: 10px;
+}
+.first>div{
+	background-color: darkgreen;
+}
+.second>div{
+	background-color: red;
+}
+.three>div{
+	background-color: deepskyblue;
+}
+.card{
+	width:250px;
+	cursor: pointer;
+	height: 100px;
+	margin-top: 10px;
+	
+}

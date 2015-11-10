@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../promise.js"></script>
+		<script type="text/javascript">
+		   Promise.resolve(42).then(function(value){
+		   		console.log(value);
+		   })
+		   
+		   Promise.reject(new Error("BOOM!")).catch(function(error){
+			    console.error(error);
+		   });
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

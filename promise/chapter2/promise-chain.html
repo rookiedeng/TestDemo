@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../promise.js"></script>
+		<script type="text/javascript">
+		function taskA() {
+		    console.log("Task A");
+		}
+		function taskB() {
+		    console.log("Task B");
+		}
+		function onRejected(error) {
+		    console.log("Catch Error: A or B", error);
+		}
+		function finalTask() {
+		    console.log("Final Task");
+		}
+		var promise = Promise.resolve();
+promise.then(taskA).then(taskB).catch(onRejected).then(finalTask);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

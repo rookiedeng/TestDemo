@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../avalon.js"></script>
+		<script type="text/javascript">
+			var vmodel =  avalon.define({
+				$id:'test',
+				divWidth:1000
+			});
+			vmodel.$watch('divWidth',function(newVal){
+				console.info(newVal)
+			})
+			//这个其实不能双向绑定
+			
+			
+		</script>
+	</head>
+	<body>
+		<div ms-controller="test" style="border: 1px solid red; height: 60px;" ms-css-width="{{divWidth}}">
+			
+		</div>
+	</body>
+</html>

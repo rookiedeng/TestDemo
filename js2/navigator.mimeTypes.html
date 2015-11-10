@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+			<div id="login_info"></div>
+			<script type="text/javascript">
+				function GetMimeTypes() {
+				    var message = "";
+				    // Internet Explorer supports the mimeTypes collection, but it is always empty
+				   // IE浏览器也支持mimeTypes集合，但是它总是空的
+				    if (navigator.mimeTypes && navigator.mimeTypes.length > 0) {
+				        var mimes = navigator.mimeTypes;
+				        for (var i=0; i < mimes.length; i++) {
+				            message += "<b>" + mimes[i].type + "</b> : " + mimes[i].description + "<br />";
+				        }
+				    }
+				    else {
+				        message = "Your browser does not support this example!";
+				    }
+				    var info = document.getElementById ("login_info");
+				    info.innerHTML = message;
+				}
+				GetMimeTypes();
+			</script>
+	</body>
+</html>

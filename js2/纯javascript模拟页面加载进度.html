@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="loader">
+			<p id="loading-text">waiting...</p>
+		</div>
+		<script type="text/javascript">
+			//定义一个图片加载类
+var ImageLoader = function(obj) {
+	//如果this不是ImageLoader的实例，则返回一个ImageLoader
+	if (!(this instanceof ImageLoader)) {
+		return new ImageLoader(obj);
+	}
+	//初始化
+	this.images = obj.images;
+	this.imagesize = obj.images.length;
+	this.counter = 0;
+	this.startTime =  (new Date()).getTime();
+	this.done = obj.done;
+	this.run();
+}
+//在原型上增加post方法，用来报告文件加载完成事件
+ImageLoader.prototype.post = function() {
+	this.counter++;
+	this.done(this.counter, this.imagesize, (new Date()).getTime() - this.startTime);
+}
+//加载图片
+ImageLoader.prototype.run = function() {
+	var _this = this;
+	for(var i = 0; i < this.imagesize; i++) {
+		var image = new Image();
+		image.onload = function() {
+			_this.post();
+		};
+		image.onerror = function() {
+			_this.post();
+		}
+		//设置了src，图片才开始下载
+		image.src = _this.images[i];
+	}
+};
+
+
+//实例化一个对象
+var myLoader = new ImageLoader({
+	images: [
+		'https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=213bbc671c4c510fae91b15a0664111f/cefc1e178a82b901ecefa19c758da9773812efdb.jpg',
+		'https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=213bbc671c4c510fae91b15a0664111f/cefc1e178a82b901ecefa19c758da9773812efdb.jpg',
+		'https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=213bbc671c4c510fae91b15a0664111f/cefc1e178a82b901ecefa19c758da9773812efdb.jpg',
+		'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=c5ab3f1e860a19d8cb56d74555c7b6b9/342ac65c10385343f2e6e18e9513b07eca808877.jpg',
+		'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=b17bb1804734970a4726436ff3f7e5fa/64380cd7912397ddb8ece1ab5f82b2b7d1a28783.jpg',
+		'https://images.unsplash.com/photo-1440882616325-43e474ece3d0?q=80&fm=jpg&s=a37b2c602c38e6a7842a27c86f3f5f9e',
+		'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=b17bb1804734970a4726436ff3f7e5fa/64380cd7912397ddb8ece1ab5f82b2b7d1a28783.jpg',
+		'https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=213bbc671c4c510fae91b15a0664111f/cefc1e178a82b901ecefa19c758da9773812efdb.jpg',
+		'http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg',
+		'http://img2.imgtn.bdimg.com/it/u=2162766932,244861494&fm=21&gp=0.jpg',
+		'http://pic1a.nipic.com/2008-12-04/2008124215522671_2.jpg'
+	],
+	//完成回调
+	done: function(index, size, timeCounter) {
+		//如果是进度条，在这里修改
+		console.log(index + " " + size + " " + timeCounter);
+		var loadingText = document.getElementById('loading-text');
+		loadingText.innerHTML = "Loaded " + index + "/" + size;
+		if (index == size) {
+			console.log('loaded');
+			loadingText.innerHTML = 'OK! ' +  size + " resources have loaded in " + timeCounter + 'ms';
+		}
+	}
+})
+			
+		</script>
+	</body>
+</html>

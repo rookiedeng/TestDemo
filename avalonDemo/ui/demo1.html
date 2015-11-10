@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../avalon.js"></script>
+	
+	</head>
+	<body>
+		<div  ms-controller="xxx">
+	     	<div id="test" ms-controller="yyy">
+		        <div ms-widget="dialog,$,$opt">
+		        </div>
+	    	</div>
+		</div>
+			<script>
+		   avalon.define("xxx", function(vm){
+		        vm.uuu = "ssdf"     
+		   })
+		   avalon.define("yyy", function(vm){
+		        vm.dfd = "sdfdf"
+		        vm.$opt = {//这个对象是作为dialog的配置对象而存在
+		            width: 400,
+		            height: 200,
+		            toggle: false
+		        }
+		   })
+		   avalon.scan(document.getElementById("test"))
+		</script>
+	</body>
+</html>

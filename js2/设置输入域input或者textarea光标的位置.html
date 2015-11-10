@@ -1,0 +1,41 @@
+<!--
+	需要把光标定位在首位，或者中间某个位置，这就需要实现一个更通用的方法。
+	这个方法setCursorPosition需要使用两个原生API
+	setSelectionRange
+	createTextRange
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<input type="text" id="demo" value="123456" />
+		<script type="text/javascript">
+			function setCursorPosition(elem, index) {
+			    var val = elem.value
+			    var len = val.length
+			    // 超过文本长度直接返回
+			    if (len < index) return
+			    setTimeout(function() {
+			        elem.focus()
+			        if (elem.setSelectionRange) { // 标准浏览器
+			            elem.setSelectionRange(index-2, index)   
+			            //这个其实就是设置选择了几个字符
+			            //相等就是一个都没选择
+			        } else { // IE9-
+			            var range = elem.createTextRange()
+			            range.moveStart("character", -len)
+			            range.moveEnd("character", -len)
+			            range.moveStart("character", index)
+			            range.moveEnd("character", 0)
+			            range.select()
+			        }
+			    }, 10)
+			}
+			setCursorPosition(document.getElementById("demo"),3)
+		</script>
+	</body>
+</html>

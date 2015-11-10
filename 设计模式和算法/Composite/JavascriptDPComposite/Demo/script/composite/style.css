@@ -1,0 +1,156 @@
+﻿.main_container
+{
+	font-size: 87.5%;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+
+ .main_container ul.Menu /* Tier 1 */
+{
+    width: 600px; /* This is more than (6em x 2) because we want to leave room for borders around the <li> elements that are selected */
+}
+
+ .main_container ul.Menu ul  /* Tier 2 */
+{
+    width: 6em;
+    top: 100%;
+    left: 0;
+}
+
+.main_container ul.Menu ul ul  /* Tier 3+ */
+{
+    top: -0.5em;
+    left: 6em;
+}
+
+ .main_container li /* all list items */
+{
+    width: 6em;
+    background: #fff;
+}
+
+ .main_container li:hover, /* list items being hovered over */
+ .main_container li.Menu-Hover
+{
+    background: #55AAFF;
+}
+
+ .main_container a, /* all anchors and spans (nodes with no link) */
+ .main_container span
+{
+    color: Black;
+    padding: 4px 2px 4px 8px;
+    border:1px solid #AAD4FF;
+    background: transparent url(arrowRight.gif) right center no-repeat;
+}
+
+ .main_container li.Menu-Leaf a, /* leaves */
+ .main_container li.Menu-Leaf span
+{
+    background-image: none !important;
+}
+
+.main_container li:hover a, /* hovered text */
+.main_container li:hover span,
+.main_container li.Menu-Hover a,
+.main_container li.Menu-Hover span,
+.main_container li:hover li:hover a,
+.main_container li:hover li:hover span,
+.main_container li.Menu-Hover li.Menu-Hover a,
+.main_container li.Menu-Hover li.Menu-Hover span,
+.main_container li:hover li:hover li:hover a,
+.main_container li:hover li:hover li:hover span,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover a,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover span,
+.main_container  li:hover li:hover li:hover li:hover a,
+.main_container li:hover li:hover li:hover li:hover span,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover a,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover span,
+.main_container li:hover li:hover li:hover li:hover li:hover a,
+.main_container li:hover li:hover li:hover li:hover li:hover span,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover a,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover span
+{
+    color: White;
+    background: transparent url(activeArrowRight.gif) right center no-repeat;
+}
+
+.main_container li:hover li a, /* the tier above this one is hovered */
+.main_container li:hover li span,
+.main_container li.Menu-Hover li a,
+.main_container li.Menu-Hover li span,
+.main_container li:hover li:hover li a,
+.main_container li:hover li:hover li span,
+.main_container li.Menu-Hover li.Menu-Hover li a,
+.main_container li.Menu-Hover li.Menu-Hover li span,
+.main_container li:hover li:hover  li:hover li a,
+.main_container li:hover li:hover  li:hover li span,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li a,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li span,
+.main_container li:hover li:hover li:hover li:hover li a,
+.main_container li:hover li:hover li:hover li:hover li span,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover li a,
+.main_container li.Menu-Hover li.Menu-Hover li.Menu-Hover li.Menu-Hover li span
+{
+    color: Black;
+    background: transparent url(arrowRight.gif) right center no-repeat;
+}
+
+.main_container ul.Menu 
+{
+    position: relative;
+}
+
+
+.main_container ul.Menu, 
+.main_container ul.Menu ul
+{
+    margin: 0;
+    padding: 0;
+    display: block;
+
+}
+
+.main_container ul.Menu li
+{
+    position: relative;
+    list-style: none;
+    float: left;
+}
+
+.main_container ul.Menu li a,
+.main_container ul.Menu li span
+{
+    display: block;
+    text-decoration: none;
+}
+
+.main_container ul.Menu ul
+{
+    position: absolute;
+    visibility: hidden;    
+}
+
+/* Add more rules here if your menus have more than three (3) tiers */
+.main_container ul.Menu li:hover ul ul,
+.main_container ul.Menu li.Menu-Hover ul ul,
+.main_container ul.Menu li:hover ul ul ul,
+.main_container ul.Menu li.Menu-Hover ul ul ul,
+.main_container ul.Menu li:hover ul ul ul ul,
+.main_container ul.Menu li.Menu-Hover ul ul ul ul
+{
+    visibility: hidden;
+}
+
+/* Add more rules here if your menus have more than three (3) tiers */
+.main_container ul.Menu li:hover ul,
+.main_container ul.Menu li li:hover ul,
+.main_container ul.Menu li li li:hover ul,
+.main_container ul.Menu li li li li:hover ul,
+.main_container ul.Menu li.Menu-Hover ul,
+.main_container ul.Menu li li.Menu-Hover ul,
+.main_container ul.Menu li li li.Menu-Hover ul,
+.main_container ul.Menu li li li li.Menu-Hover ul
+{
+    visibility: visible;
+}

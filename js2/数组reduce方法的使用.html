@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var arr = [1,2,3,1,2,3,4];
+			var person = {};
+			var tempReduce = arr.reduce(function(previousValue,currentValue,currentIndex,arr){
+				console.info(arguments.length);
+				console.info("previousValue="+arguments[0]);
+				console.info("currentValue="+arguments[1]);
+				console.info(arguments[2]);
+				console.info(arguments[3]);
+				console.info(this)
+				return arguments[3]
+			},person)
+			console.info(tempReduce)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

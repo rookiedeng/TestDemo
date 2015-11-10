@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.tab {
+			    position: relative;
+			    display: inline-block;
+			    padding: .5em 1em .35em;
+			    color: white;
+			}
+			.tab::before {
+			    content: ''; /* To generate the box */
+			    position: absolute;
+			    top: 0;
+			    right: 0; 
+			    bottom: 0; 
+			    left: 0;
+			    z-index: -1;/*吧文字显示在上层*/
+			    background: #58a;
+			    transform: perspective(.5em) rotateX(5deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tab">
+			梯形标签
+		</div>
+	</body>
+</html>

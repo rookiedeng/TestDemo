@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var arr = [1,2,3,4,5,6];
+			var person = {};
+			var tempMap = arr.map(function(val,index,arr){
+				console.info(arguments.length);
+				console.info(val);
+				console.info(index);
+				console.info(arr);
+				console.info(this)
+				return 1;
+			},person)
+			console.info(tempMap);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

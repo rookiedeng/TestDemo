@@ -43,7 +43,6 @@
 // Support: Firefox 18+
 //
 
-//数组的一些方法
 var deletedIds = [];
 
 var slice = deletedIds.slice;
@@ -54,7 +53,6 @@ var push = deletedIds.push;
 
 var indexOf = deletedIds.indexOf;
 
-//对象的一些方法
 var class2type = {};
 
 var toString = class2type.toString;
@@ -65,7 +63,8 @@ var support = {};
 
 
 
-var version = "1.11.3",
+var
+	version = "1.11.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -79,9 +78,7 @@ var version = "1.11.3",
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// Matches dashed string for camelizing
-	//匹配驼峰法字符串
 	rmsPrefix = /^-ms-/,
-	//匹配以-ms-开头
 	rdashAlpha = /-([\da-z])/gi,
 
 	// Used by jQuery.camelCase as callback to replace()

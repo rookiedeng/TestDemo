@@ -1,0 +1,23 @@
+<!--
+早期浏览器都面临一个特殊的问题，即当浏览器不支持JavaScript 时如何让页面平稳地退化。对这个问题的最终解决方案就是创造一个<noscript>元素，用以在不支持JavaScript 的浏览器中显示替代的内容。这个元素可以包含能够出现在文档<body>中的任何HTML 元素一一<script>元素除外。
+包含在<noscript>元素中的内容只有在下列情况下才会显示出来：
+浏览器不支持脚本；
+浏览器支持脚本，但脚本被禁用。
+符合上述任何一个条件，浏览器都会显示<noscript>中的内容。而在除此之外的其他情况下，浏览器不会呈现<noscript> 中的内容。
+请着下面这个简单的例子：
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/VB">
+		   <!--
+		   document.write("Hello World!")
+		   '-->
+		</script>
+		<noscript>Your browser does not support VBScript!</noscript>
+	</body>
+</html>
