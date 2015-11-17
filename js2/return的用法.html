@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--
+		在大多数情况下,为事件处理函数如果让其返回false,可以防止默认的事件行为.例如,默认情况下,点击一个<a>标签元素,页面会跳转到该元素href属性指定的页. 而return false就相当于终止符,return true就相当于执行符. 在js中return false的作用一般是用来取消默认动作的.比如你单击一个链接除了触发你的"onclick"事件以外还要触发一个默认事件就是执行页面的跳转.所以这时候如果你想取消对象的默认动作就可以return false来阻止它的动作.也就是说如果你想用js代码来局部改变一些数据而不引起页面其他部位的变化,那么你就应该在onclick事件代码的后面加上return false;
+	在js中,我们通常用return false来阻止提交表单或者继续执行下面的代码,通俗来说就是阻止执行默认的行为.
+	
+	function s1(){
+	    if(true){
+	        return false;
+	    }
+	}
+	function s2(){
+	    m();
+	    n();
+	    p();
+	}
+	上面两个例子,函数s1那样写没有问题的,if函数体里返回出去false,终止函数.而在函数s2里,如果我们在m函数里返回一个return false阻止提交,但是这并不影响函数n和函数p的执行.在s2函数里调用函数m,那里面的return false对于函数s2来说,只是相当于返回值,并不能阻止函数s2的执行.return false只在当前函数有效,并不会影响其他外部函数的执行.
+	
+	总结:
+	return true;返回正常的处理结果.
+	return false;返回错误的处理结果;终止处理;阻止提交表单;阻止执行默认的行为.
+	return;把控制权返回给页面.
+	-->
+	
+	<body>
+		<a href="https://www.baidu.com" onclick="return false"> click me</a>
+		
+		<!--
+			这样写不行  默认事件还是会执行
+			<a href="https://www.baidu.com" onclick="returnTest"> click me</a>
+		-->
+		<script type="text/javascript">
+		/*	
+		 * function returnTest(){
+				return false;
+			}*/
+			
+			
+			document.getElementsByTagName("a")[0].addEventListener("click",function(){
+				return false;
+			})
+		</script>
+	</body>
+	
+</html>

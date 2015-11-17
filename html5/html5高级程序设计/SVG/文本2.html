@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<svg>
+			<!--<text x="10" y="10">Hello World!
+			  <tspan x="10 20 30"  font-weight="bold" fill="red">This is bold and red</tspan>
+			</text>
+			<text x="20" y="50">Hello World!
+ 				<tspan rotate="10 20 45"  font-weight="bold" fill="red">This is bold and red</tspan>
+			</text>
+			
+			<text x="10" y="80" id="example">This is an example text.</text>
+			<text x="10" y="100">
+			    <tref xlink:href="#example" />
+			</text>-->
+			
+			<path id="my_path" d="M 20,20 C 40,40 80,40 100,20" />
+			<text >
+			  <textPath xlink:href="#my_path" fill="white">This text follows a curve.</textPath>
+			</text>
+		</svg>
+	</body>
+	
+</html>

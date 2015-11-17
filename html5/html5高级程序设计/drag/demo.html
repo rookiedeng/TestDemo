@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="test"  draggable="true" style="border: 1px solid red; width: 200px; height: 200px;">
+			
+		</div>
+		<script type="text/javascript">
+			var el = document.querySelector("#test");
+			el.addEventListener("dragstart",function(e){
+				console.info(e)
+			})
+		</script>
+	</body>
+</html>

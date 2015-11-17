@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="support"></div>
+		<button id="stopButton">Stop Task</button>
+		<button id="helloButton">Post a Message</button>
+		<script type="text/javascript">
+			function stopWorker(){
+				worker.terminate();
+			}
+			
+			function messageHandler(e){
+				console.log(e.data);
+			}
+			
+			function errorHandler(e){
+				console.warn(e.message,e)
+			}
+		
+			function loadDemo(){
+				if( typeof Worker !=='undefined'){
+					document.getElementById("support").innerHTML="你的浏览器支持webworks";
+				}
+				
+				worker = new Worker("demo.js");
+				worker.addEventListener("message",messageHandler,true);
+				worker.addEventListener("err",errorHandler,true);
+				
+				document.getElementById("helloButton").onclick = function(){
+					worker.postMessage("Here a message for you");
+				}
+				
+				document.getElementById("stopButton").onclick = stopWorker;
+			
+			}
+			loadDemo();
+		</script>
+	</body>
+</html>

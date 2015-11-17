@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#member li{
+				cursor: pointer;
+			}
+			.highlihted{
+				background-color: yellow;
+			}
+			.validtarget{
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="member">
+			<li draggable="true" data-age="38">rookie1</li>
+			<li draggable="true" data-age="28">rookie2</li>
+			<li draggable="true" data-age="8">rookie3</li>
+			<li draggable="true" data-age="33">rookie4</li>
+			<li draggable="true" data-age="355">rookie5</li>
+			<li draggable="true" data-age="345">rookie6</li>
+			<li draggable="true" data-age="35">rookie7</li>
+			<li draggable="true" data-age="37">rookie8</li>
+			<li draggable="true" data-age="39">rookie9</li>
+		</ul>
+		
+		<div class="dropList">
+			<fieldset id="racesField">
+				<legend>racers(by age):</legend>
+				<ul id="racers"></ul>
+			</fieldset>
+		</div>
+	</body>
+</html>
