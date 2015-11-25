@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+		 <desc>Scripting the onclick event</desc>
+		 <defs>
+		    <script type="text/ecmascript"> 
+		    <![CDATA[
+		      function hideReveal(evt) {
+		        var imageTarget = evt.target;
+		        var theFill = imageTarget.getAttribute("fill");
+		        if (theFill == 'white')
+		          imageTarget.setAttribute("fill", "url(#notes)");
+		        else
+		          imageTarget.setAttribute("fill", "white");
+		      }
+		    ]]> 
+		    </script>  
+		    <pattern id="notes" x="0" y="0" width="50" height="75" 
+		                   patternTransform="rotate(15)" 
+		                   patternUnits="userSpaceOnUse">
+		         <ellipse cx="10" cy="30" rx="10" ry="5"/>
+		         <line x1="20" y1="30" x2="20" y2="0" 
+		                   stroke-width="3" stroke="black"/>
+		         <line x1="20" y1="0" x2="30" y2="5" 
+		                   stroke-width="3" stroke="black"/>
+		     </pattern>
+		   </defs>
+		 <ellipse onclick="hideReveal(evt)" cx="175" cy="100" rx="125" ry="60"
+		           fill="url(#notes)" stroke="black" stroke-width="5"/>
+		</svg>
+	</body>
+</html>

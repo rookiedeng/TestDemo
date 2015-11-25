@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<svg xmlns="http://www.w3.org/2000/svg"
+     		 xmlns:xlink="http://www.w3.org/1999/xlink"
+     		 version="1.1" width="5cm" height="5cm"
+     		 >
+			<desc> Two groups, each of two rectangles</desc>
+			<symbol id="group1" fill="red">
+				<rect x="1cm" y="1cm" width="1cm" height="1cm"></rect>
+				<rect x="3cm" y="1cm" width="1cm" height="1cm"></rect>
+			</symbol>
+			<g id="group2" fill="blue">
+				<rect x="1cm" y="3cm" width="1cm" height="1cm"></rect>
+				<rect x="3cm" y="3cm" width="1cm" height="1cm"></rect>
+			</g>
+			<use xlink:href="#group1" target="_blank" rel="nofollow"></use>
+			<rect x=".02cm" y=".02cm" width="4.96cm" height="4.96cm"
+        	fill="none" stroke="blue" stroke-width=".02cm"/>
+		</svg>
+	</body>
+</html>

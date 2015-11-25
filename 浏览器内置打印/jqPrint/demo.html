@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="utf-8">
+		<title></title>
+	
+	</head>
+	<body>
+		<div id="ddd">
+		    <table>
+		        <tr>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		        </tr>
+		    </table>
+		</div>
+		<input type="button"  value="打印" id="btn"/>
+		<script type="text/javascript" src="lib/jquery-1.11.2.min.js"></script>
+		<script src="lib/jquery-migrate-1.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="lib/jquery.jqprint-0.3.js"></script>
+		<script type="text/javascript">
+		var a = null
+		window.onload=function(){
+			var target = document.getElementById('btn');
+		/*	target.attachEvent('onclick',function(){
+				$("#btn").jqprint();
+			})*/
+			target.onclick = function(){
+				/*$("#ddd").jqprint({
+					
+					debug:true
+				}
+				);*/
+				var printHtml = $("#ddd");
+				<style> @media Print { .Noprn { DISPLAY: none }}
+			}
+		/*	function  a(){
+		        $("#ddd").jqprint();
+		    }
+		*/}
+		/*document.getElementById('ddd').attachEvent('click',function(){
+			$("#ddd").jqprint();
+		})*/
+		function  a(){
+		        $("#ddd").jqprint();
+		    }
+		</script>
+	</body>
+</html>
