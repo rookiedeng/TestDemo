@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// Create the fragment
+			var fragment = document.createDocumentFragment();
+			
+			//add DOM to fragment 
+			
+			for(var i = 0; i < 10; i++) {
+			    var spanNode = document.createElement("span");
+			    spanNode.innerHTML = "number:" + i;
+			    fragment.appendChild(spanNode);
+			}
+			
+			//add this DOM to body
+			document.body.appendChild(fragment);
+			
+		</script>
+	</body>
+</html>

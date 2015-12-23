@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+		/*
+		 * 惰性函数的原理：惰性载入表示函数执行的分支只会在函数第一次掉用的时候执行，在第一次调用过程中，
+		 * 该函数会被覆盖为另一个按照合适方式执行的函数，这样任何对原函数的调用就不用再经过执行的分支了
+		 */
+			function person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			function createPerson(type){
+				console.info("执行一次了");
+				switch (type){
+					case 1:
+						createPerson = function(){
+							return new person('张三',12);
+						}
+						break;
+					case 2:
+						createPerson = function(){
+							return new person('李四',12);
+						}
+						break;
+					case 3:
+						createPerson = function(){
+								return new person('王五',12);
+							}
+						break;
+					default:
+						createPerson = function(){
+							return new person('默认',12);
+						}
+						break;
+				}
+			}
+			console.info(createPerson(1))
+			console.info(createPerson(2))
+			console.info(createPerson(3))
+			console.info(createPerson(4))
+			/*
+			 惰性载入函数有两个主要优点，第一是显而易见的效率问题，虽然在第一次执行的时候函数会意味赋值而执行的慢一些，但是后续的调用会因为避免的重复检测更快；
+			 第二个是要执行的适当代码只有当实际调用函数是才执行，很多JavaScript库在在加载的时候就根据浏览器不同而执行很多分支，把所有东西实现设置好，
+			 而惰性载入函数将计算延迟，不影响初始脚本的执行时间。
+			 * */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

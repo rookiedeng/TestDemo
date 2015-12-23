@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--
+			最近在做web项目，碰到需要跨页面传递参数的功能，就是那种需要把当前页面的内容带到新开的子窗体中，以前的做法是传一个id过去，
+			然后在新窗口中去读数据库的内容。虽然不怎么麻烦，但是如果内容么有在数据库里保存，仅仅是处以拟稿状态时，就不能实现了，用户还常常认为是个bug。
+			考虑采用get的方式传递，把需要的内容都序列化然后，通过url去传，显得很臃肿，而且get的传递内容长度有限制。于是就想到用post的方式传递，
+			问题在于open方法不能设置请求方式，一般网页的post都是通过form来实现的。如果仅仅模拟form的提交方式，那么open方法里那种可设置窗体属性的参数又不能用。
+			最后想办法整了这么一个两者结合的方式，将form的target设置成和open的name参数一样的值，通过浏览器自动识别实现了将内容post到新窗口中。
+		            比较有意思的是直接通过调用form的submit方法不能触发onsubmit事件，查看了帮助文档，必须手动的触发，否则只能看到页面刷新而没有打开新窗口。
+		            代码中只传递了一个参数内容，实际可传递多个。具体代码如下：
+			function openPostWindow(url, data, name)  
+		-->
+		
+		<script type="text/javascript">
+			function openPostWindow(url, data, name){  
+		         var tempForm = document.createElement("form");  
+			         tempForm.id="tempForm1";  
+			         tempForm.method="post";  
+			         tempForm.action=url;  
+			         tempForm.target='exportFile';  
+			           
+		         var hideInput = document.createElement("input");  
+			         hideInput.type="hidden";  
+			         hideInput.name= "content"
+			         hideInput.value= data;
+			         tempForm.appendChild(hideInput);   
+			         tempForm.attachEvent("onsubmit",function(){ 
+			         	openWindow(name);
+			         });
+			         document.body.appendChild(tempForm);  
+			          
+		             tempForm.fireEvent("onsubmit");
+		         	 tempForm.submit();
+		             document.body.removeChild(tempForm);
+		     }
+     
+		      function openWindow()  
+		      {  
+		          window.open('about:blank','exportFile','height=400, width=400, top=0, left=0, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes,location=yes, status=yes');   
+		      }  
+     </script>
+	</head>
+	<body>
+	</body>
+</html>
